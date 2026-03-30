@@ -126,16 +126,15 @@
     font-size: 13px; border-bottom: 1px solid var(--border); line-height: 1.6;
   }
   .mission-step:last-of-type { border-bottom: none; }
-  .step-num {
-    width: 20px; height: 20px; border-radius: 50%; background: var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; font-weight: 900; flex-shrink: 0; margin-top: 2px; color: var(--text-sub);
+  .step-bullet {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--text-sub);
+    flex-shrink: 0; margin-top: 8px;
   }
-  .mission-card[data-mission="1"] .step-num { background: rgba(230,59,46,0.12); color: var(--red); }
-  .mission-card[data-mission="2"] .step-num { background: rgba(232,139,199,0.15); color: #c06aa8; }
-  .mission-card[data-mission="3"] .step-num { background: rgba(196,168,77,0.15); color: #a08830; }
-  .mission-card[data-mission="4"] .step-num { background: rgba(51,102,204,0.12); color: var(--blue); }
-  .mission-card[data-mission="5"] .step-num { background: rgba(45,184,75,0.12); color: var(--green); }
+  .mission-card[data-mission="1"] .step-bullet { background: var(--red); }
+  .mission-card[data-mission="2"] .step-bullet { background: var(--pink); }
+  .mission-card[data-mission="3"] .step-bullet { background: var(--gold); }
+  .mission-card[data-mission="4"] .step-bullet { background: var(--blue); }
+  .mission-card[data-mission="5"] .step-bullet { background: var(--green); }
 
   .step-text { flex: 1; }
 
@@ -219,7 +218,7 @@
 <div class="countdown-bar">
   <div class="countdown-label" data-ko="미션 종료까지" data-ja="ミッション終了まで">미션 종료까지</div>
   <div class="countdown-value" id="countdown">--:--:--:--</div>
-  <div class="countdown-target" data-ko="4/14(화) 17:15 종료" data-ja="4/14(火) 17:15 終了">4/14(화) 17:15 종료</div>
+  <div class="countdown-target" data-ko="4/14(화) 17:10 종료" data-ja="4/14(火) 17:10 終了">4/14(화) 17:10 종료</div>
 </div>
 
 <!-- Schedule -->
@@ -227,15 +226,15 @@
   <div class="section-title">&#128203; <span data-ko="일정" data-ja="スケジュール">일정</span></div>
   <div class="schedule-card">
     <div class="schedule-item">
-      <div class="schedule-time">16:00-16:15</div>
+      <div class="schedule-time">16:00-16:10</div>
       <div class="schedule-emoji">&#127908;</div>
       <div>
-        <div class="schedule-desc" data-ko="사옥투어 미션 소개" data-ja="オフィスツアー ミッション紹介">사옥투어 미션 소개</div>
-        <div class="schedule-loc">10F WE! PLACE <span class="floor-tag">15min</span></div>
+        <div class="schedule-desc" data-ko="사옥투어 안내" data-ja="オフィスツアー案内">사옥투어 안내</div>
+        <div class="schedule-loc">10F WE! PLACE <span class="floor-tag">10min</span></div>
       </div>
     </div>
     <div class="schedule-item">
-      <div class="schedule-time">16:15-17:15</div>
+      <div class="schedule-time">16:10-17:10</div>
       <div class="schedule-emoji">&#127939;</div>
       <div>
         <div class="schedule-desc" data-ko="미션 투어 (5개)" data-ja="ミッションツアー (5つ)">미션 투어 (5개)</div>
@@ -243,11 +242,11 @@
       </div>
     </div>
     <div class="schedule-item">
-      <div class="schedule-time">17:15-17:30</div>
+      <div class="schedule-time">17:10-17:30</div>
       <div class="schedule-emoji">&#128248;</div>
       <div>
         <div class="schedule-desc" data-ko="포토월 & 메시지 감상" data-ja="フォトウォール & メッセージ鑑賞">포토월 & 메시지 감상</div>
-        <div class="schedule-loc">10F WE! PLACE <span class="floor-tag">15min</span></div>
+        <div class="schedule-loc">10F WE! PLACE <span class="floor-tag">20min</span></div>
       </div>
     </div>
   </div>
@@ -274,9 +273,9 @@
     </div>
     <div class="mission-body"><div class="mission-content">
       <ul class="mission-steps">
-        <li class="mission-step"><span class="step-num">1</span><span class="step-text" data-ko="IDC가 배경에 나오도록 구도 잡기" data-ja="IDCが背景に入るように構図を決める">IDC가 배경에 나오도록 구도 잡기</span></li>
-        <li class="mission-step"><span class="step-num">2</span><span class="step-text" data-ko="팀원들과 함께 몸으로 IDC 또는 CLOUD 알파벳을 표현하기" data-ja="チームメンバーと一緒に体でIDCまたはCLOUDのアルファベットを表現する">팀원들과 함께 몸으로 IDC 또는 CLOUD 알파벳을 표현하기</span></li>
-        <li class="mission-step"><span class="step-num">3</span><span class="step-text"><span data-ko="1명이 사진 찍어 올리기" data-ja="1名が写真を撮ってアップロード">1명이 사진 찍어 올리기</span> <a href="https://livewall.no/MvsNzhSVZQKLtbxgL2E2oh/camera/" target="_blank" class="upload-link" data-ko="&#10132; 업로드 바로가기" data-ja="&#10132; アップロードへ">&#10132; 업로드 바로가기</a></span></li>
+        <li class="mission-step"><span class="step-bullet"></span><span class="step-text" data-ko="IDC가 배경에 나오도록 구도 잡기" data-ja="IDCが背景に入るように構図を決める">IDC가 배경에 나오도록 구도 잡기</span></li>
+        <li class="mission-step"><span class="step-bullet"></span><span class="step-text" data-ko="팀원들과 함께 몸으로 IDC 또는 CLOUD 알파벳을 표현하기" data-ja="チームメンバーと一緒に体でIDCまたはCLOUDのアルファベットを表現する">팀원들과 함께 몸으로 IDC 또는 CLOUD 알파벳을 표현하기</span></li>
+        <li class="mission-step"><span class="step-bullet"></span><span class="step-text"><a href="https://livewall.no/MvsNzhSVZQKLtbxgL2E2oh/camera/" target="_blank" class="upload-link" data-ko="&#10140; 인증샷 업로드 바로가기" data-ja="&#10140; 認証ショットアップロードへ">&#10140; 인증샷 업로드 바로가기</a></span></li>
       </ul>
       <button class="mission-complete-btn" onclick="toggleComplete(1)" data-ko="미션 완료!" data-ja="ミッション完了！" data-ko-done="완료됨 &#10003;" data-ja-done="完了 &#10003;">미션 완료!</button>
     </div></div>
@@ -294,10 +293,10 @@
     </div>
     <div class="mission-body"><div class="mission-content">
       <ul class="mission-steps">
-        <li class="mission-step"><span class="step-num">1</span><span class="step-text" data-ko="플레이뮤지엄 내 작품은 총 몇 개인지 세어보기" data-ja="プレイミュージアム内の作品は全部で何個か数えてみる">플레이뮤지엄 내 작품은 총 몇 개인지 세어보기</span></li>
-        <li class="mission-step"><span class="step-num">2</span><span class="step-text" data-ko="가장 마음에 드는 작품 선정하기" data-ja="一番気に入った作品を選ぶ">가장 마음에 드는 작품 선정하기</span></li>
-        <li class="mission-step"><span class="step-num">3</span><span class="step-text" data-ko="선정한 작품 앞에서 작품 총 갯수를 손가락으로 표현하며 사진 찍기" data-ja="選んだ作品の前で作品の総数を指で表現して写真を撮る">선정한 작품 앞에서 작품 총 갯수를 손가락으로 표현하며 사진 찍기</span></li>
-        <li class="mission-step"><span class="step-num">4</span><span class="step-text"><a href="https://livewall.no/MvsNzhSVZQKLtbxgL2E2oh/camera/" target="_blank" class="upload-link" data-ko="&#10132; 인증샷 업로드 바로가기" data-ja="&#10132; 認証ショットアップロードへ">&#10132; 인증샷 업로드 바로가기</a></span></li>
+        <li class="mission-step"><span class="step-bullet"></span><span class="step-text" data-ko="플레이뮤지엄 내 작품은 총 몇 개인지 세어보기" data-ja="プレイミュージアム内の作品は全部で何個か数えてみる">플레이뮤지엄 내 작품은 총 몇 개인지 세어보기</span></li>
+        <li class="mission-step"><span class="step-bullet"></span><span class="step-text" data-ko="가장 마음에 드는 작품 선정하기" data-ja="一番気に入った作品を選ぶ">가장 마음에 드는 작품 선정하기</span></li>
+        <li class="mission-step"><span class="step-bullet"></span><span class="step-text" data-ko="선정한 작품 앞에서 작품 총 갯수를 손가락으로 표현하며 사진 찍기" data-ja="選んだ作品の前で作品の総数を指で表現して写真を撮る">선정한 작품 앞에서 작품 총 갯수를 손가락으로 표현하며 사진 찍기</span></li>
+        <li class="mission-step"><span class="step-bullet"></span><span class="step-text"><a href="https://livewall.no/MvsNzhSVZQKLtbxgL2E2oh/camera/" target="_blank" class="upload-link" data-ko="&#10140; 인증샷 업로드 바로가기" data-ja="&#10140; 認証ショットアップロードへ">&#10140; 인증샷 업로드 바로가기</a></span></li>
       </ul>
       <button class="mission-complete-btn" onclick="toggleComplete(2)" data-ko="미션 완료!" data-ja="ミッション完了！" data-ko-done="완료됨 &#10003;" data-ja-done="完了 &#10003;">미션 완료!</button>
     </div></div>
@@ -315,9 +314,9 @@
     </div>
     <div class="mission-body"><div class="mission-content">
       <ul class="mission-steps">
-        <li class="mission-step"><span class="step-num">1</span><span class="step-text" data-ko="팀원 중 가장 어린 사람과 가장 나이 많은 사람의 태어난 해에 출판된 도서 찾기" data-ja="チームメンバーの中で最年少と最年長の生まれ年に出版された本を探す">팀원 중 가장 어린 사람과 가장 나이 많은 사람의 태어난 해에 출판된 도서 찾기</span></li>
-        <li class="mission-step"><span class="step-num">2</span><span class="step-text" data-ko="해당 팀원이 도서를 들고 팀원들과 함께 사진 찍기" data-ja="該当メンバーが本を持ってチームメンバーと一緒に写真を撮る">해당 팀원이 도서를 들고 팀원들과 함께 사진 찍기</span></li>
-        <li class="mission-step"><span class="step-num">3</span><span class="step-text"><a href="https://livewall.no/MvsNzhSVZQKLtbxgL2E2oh/camera/" target="_blank" class="upload-link" data-ko="&#10132; 인증샷 업로드 바로가기" data-ja="&#10132; 認証ショットアップロードへ">&#10132; 인증샷 업로드 바로가기</a></span></li>
+        <li class="mission-step"><span class="step-bullet"></span><span class="step-text" data-ko="팀원 중 가장 어린 사람과 가장 나이 많은 사람의 태어난 해에 출판된 도서 찾기" data-ja="チームメンバーの中で最年少と最年長の生まれ年に出版された本を探す">팀원 중 가장 어린 사람과 가장 나이 많은 사람의 태어난 해에 출판된 도서 찾기</span></li>
+        <li class="mission-step"><span class="step-bullet"></span><span class="step-text" data-ko="해당 팀원이 도서를 들고 팀원들과 함께 사진 찍기" data-ja="該当メンバーが本を持ってチームメンバーと一緒に写真を撮る">해당 팀원이 도서를 들고 팀원들과 함께 사진 찍기</span></li>
+        <li class="mission-step"><span class="step-bullet"></span><span class="step-text"><a href="https://livewall.no/MvsNzhSVZQKLtbxgL2E2oh/camera/" target="_blank" class="upload-link" data-ko="&#10140; 인증샷 업로드 바로가기" data-ja="&#10140; 認証ショットアップロードへ">&#10140; 인증샷 업로드 바로가기</a></span></li>
       </ul>
       <button class="mission-complete-btn" onclick="toggleComplete(3)" data-ko="미션 완료!" data-ja="ミッション完了！" data-ko-done="완료됨 &#10003;" data-ja-done="完了 &#10003;">미션 완료!</button>
     </div></div>
@@ -335,9 +334,9 @@
     </div>
     <div class="mission-body"><div class="mission-content">
       <ul class="mission-steps">
-        <li class="mission-step"><span class="step-num">1</span><span class="step-text" data-ko="사옥 건물이 전부 나오도록 구도 잡기" data-ja="オフィスビル全体が映るように構図を決める">사옥 건물이 전부 나오도록 구도 잡기</span></li>
-        <li class="mission-step"><span class="step-num">2</span><span class="step-text" data-ko="사옥 앞에서 발이 모두 공중에 뜬 점프샷 찍기" data-ja="オフィス前で全員の足が空中に浮いたジャンプショットを撮る">사옥 앞에서 발이 모두 공중에 뜬 점프샷 찍기</span></li>
-        <li class="mission-step"><span class="step-num">3</span><span class="step-text"><a href="https://livewall.no/MvsNzhSVZQKLtbxgL2E2oh/camera/" target="_blank" class="upload-link" data-ko="&#10132; 인증샷 업로드 바로가기" data-ja="&#10132; 認証ショットアップロードへ">&#10132; 인증샷 업로드 바로가기</a></span></li>
+        <li class="mission-step"><span class="step-bullet"></span><span class="step-text" data-ko="사옥 건물이 전부 나오도록 구도 잡기" data-ja="オフィスビル全体が映るように構図を決める">사옥 건물이 전부 나오도록 구도 잡기</span></li>
+        <li class="mission-step"><span class="step-bullet"></span><span class="step-text" data-ko="사옥 앞에서 발이 모두 공중에 뜬 점프샷 찍기" data-ja="オフィス前で全員の足が空中に浮いたジャンプショットを撮る">사옥 앞에서 발이 모두 공중에 뜬 점프샷 찍기</span></li>
+        <li class="mission-step"><span class="step-bullet"></span><span class="step-text"><a href="https://livewall.no/MvsNzhSVZQKLtbxgL2E2oh/camera/" target="_blank" class="upload-link" data-ko="&#10140; 인증샷 업로드 바로가기" data-ja="&#10140; 認証ショットアップロードへ">&#10140; 인증샷 업로드 바로가기</a></span></li>
       </ul>
       <button class="mission-complete-btn" onclick="toggleComplete(4)" data-ko="미션 완료!" data-ja="ミッション完了！" data-ko-done="완료됨 &#10003;" data-ja-done="完了 &#10003;">미션 완료!</button>
     </div></div>
@@ -355,13 +354,13 @@
     </div>
     <div class="mission-body"><div class="mission-content">
       <ul class="mission-steps">
-        <li class="mission-step"><span class="step-num">1</span><span class="step-text" data-ko="여기가 어디인지 추리해보기" data-ja="ここがどこか推理してみよう">여기가 어디인지 추리해보기</span></li>
+        <li class="mission-step"><span class="step-bullet"></span><span class="step-text" data-ko="여기가 어디인지 추리해보기" data-ja="ここがどこか推理してみよう">여기가 어디인지 추리해보기</span></li>
       </ul>
       <div class="mission-img-placeholder" data-ko="[ 히든 스팟 사진 ]" data-ja="[ ヒドゥンスポット写真 ]">[ 히든 스팟 사진 ]</div>
       <ul class="mission-steps" style="margin-top: 4px;">
-        <li class="mission-step"><span class="step-num">2</span><span class="step-text" data-ko="해당 장소로 이동하기" data-ja="その場所へ移動する">해당 장소로 이동하기</span></li>
-        <li class="mission-step"><span class="step-num">3</span><span class="step-text" data-ko="장소 앞에서 사진 찍기" data-ja="場所の前で写真を撮る">장소 앞에서 사진 찍기</span></li>
-        <li class="mission-step"><span class="step-num">4</span><span class="step-text"><a href="https://livewall.no/MvsNzhSVZQKLtbxgL2E2oh/camera/" target="_blank" class="upload-link" data-ko="&#10132; 인증샷 업로드 바로가기" data-ja="&#10132; 認証ショットアップロードへ">&#10132; 인증샷 업로드 바로가기</a></span></li>
+        <li class="mission-step"><span class="step-bullet"></span><span class="step-text" data-ko="해당 장소로 이동하기" data-ja="その場所へ移動する">해당 장소로 이동하기</span></li>
+        <li class="mission-step"><span class="step-bullet"></span><span class="step-text" data-ko="장소 앞에서 사진 찍기" data-ja="場所の前で写真を撮る">장소 앞에서 사진 찍기</span></li>
+        <li class="mission-step"><span class="step-bullet"></span><span class="step-text"><a href="https://livewall.no/MvsNzhSVZQKLtbxgL2E2oh/camera/" target="_blank" class="upload-link" data-ko="&#10140; 인증샷 업로드 바로가기" data-ja="&#10140; 認証ショットアップロードへ">&#10140; 인증샷 업로드 바로가기</a></span></li>
       </ul>
       <button class="mission-complete-btn" onclick="toggleComplete(5)" data-ko="미션 완료!" data-ja="ミッション完了！" data-ko-done="완료됨 &#10003;" data-ja-done="完了 &#10003;">미션 완료!</button>
     </div></div>
@@ -400,7 +399,7 @@ function setLang(lang) {
 }
 
 // Countdown to 2026-04-14 17:15 KST
-var TARGET = new Date('2026-04-14T17:15:00+09:00').getTime();
+var TARGET = new Date('2026-04-14T17:10:00+09:00').getTime();
 function updateCountdown() {
   var diff = TARGET - Date.now();
   var el = document.getElementById('countdown');
