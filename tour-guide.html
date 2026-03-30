@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>2026 NHN 사옥투어 가이드</title>
+<style>
+  :root {
+    --primary: #00C73C;
+    --primary-dark: #00a832;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --text-sub: #666;
+    --border: #e8eaed;
+    --mission-accent: #ff6b35;
+    --success: #00C73C;
+    --tag-bg: #e8f5e9;
+    --tag-text: #2e7d32;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #00C73C 0%, #00a832 100%);
+    color: white;
+    padding: 24px 20px 32px;
+    text-align: center;
+    position: relative;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .lang-toggle {
+    display: flex;
+    background: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .lang-btn {
+    padding: 6px 14px;
+    border: none;
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .lang-btn.active {
+    background: white;
+    color: var(--primary-dark);
+    border-radius: 20px;
+  }
+  .header-badge {
+    font-size: 12px;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 12px;
+    display: inline-block;
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 800;
+    margin: 8px 0 4px;
+    letter-spacing: -0.5px;
+  }
+  .header p {
+    font-size: 14px;
+    opacity: 0.9;
+  }
+
+  /* Timer */
+  .timer-bar {
+    background: white;
+    margin: -16px 16px 16px;
+    border-radius: 16px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+  }
+  .timer-left { display: flex; align-items: center; gap: 12px; }
+  .timer-icon { font-size: 28px; }
+  .timer-label { font-size: 12px; color: var(--text-sub); }
+  .timer-value { font-size: 24px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .timer-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .timer-btn.start { background: var(--primary); color: white; }
+  .timer-btn.start:hover { background: var(--primary-dark); }
+  .timer-btn.pause { background: #ff6b35; color: white; }
+  .timer-btn.reset { background: var(--border); color: var(--text-sub); margin-left: 8px; font-size: 12px; padding: 8px 14px; }
+
+  /* Schedule Overview */
+  .section { padding: 0 16px; margin-bottom: 20px; }
+  .section-title {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .schedule-card {
+    background: var(--card);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .schedule-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    gap: 12px;
+  }
+  .schedule-item:last-child { border-bottom: none; }
+  .schedule-time {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    min-width: 50px;
+    white-space: nowrap;
+  }
+  .schedule-emoji { font-size: 20px; }
+  .schedule-desc { font-size: 14px; font-weight: 500; flex: 1; }
+  .schedule-loc { font-size: 11px; color: var(--text-sub); }
+
+  /* Mission Cards */
+  .mission-card {
+    background: var(--card);
+    border-radius: 16px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    border-left: 4px solid var(--mission-accent);
+    transition: all 0.3s;
+  }
+  .mission-card.completed {
+    border-left-color: var(--success);
+    opacity: 0.85;
+  }
+  .mission-header {
+    padding: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .mission-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--mission-accent);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .mission-card.completed .mission-number {
+    background: var(--success);
+  }
+  .mission-card.completed .mission-number::after {
+    content: '✓';
+    font-size: 18px;
+  }
+  .mission-card.completed .mission-num-text { display: none; }
+  .mission-header-text { flex: 1; }
+  .mission-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .mission-location {
+    font-size: 12px;
+    color: var(--text-sub);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .mission-chevron {
+    font-size: 18px;
+    color: var(--text-sub);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+  .mission-card.open .mission-chevron { transform: rotate(180deg); }
+  .mission-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .mission-card.open .mission-body { max-height: 600px; }
+  .mission-content {
+    padding: 0 16px 16px;
+  }
+  .mission-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+  .mission-checklist {
+    list-style: none;
+    margin-bottom: 16px;
+  }
+  .mission-checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+  }
+  .mission-checklist li:last-child { border-bottom: none; }
+  .check-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 1px;
+  }
+  .check-icon.checked {
+    background: var(--success);
+    border-color: var(--success);
+    color: white;
+    font-size: 12px;
+  }
+  .mission-complete-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: var(--mission-accent);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .mission-complete-btn:hover { background: #e55a2b; }
+  .mission-complete-btn.done {
+    background: var(--success);
+    pointer-events: none;
+  }
+
+  /* Progress Bar */
+  .progress-section {
+    padding: 0 16px;
+    margin-bottom: 24px;
+  }
+  .progress-bar-bg {
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), #00e64d);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .progress-text {
+    font-size: 12px;
+    color: var(--text-sub);
+    text-align: center;
+    font-weight: 600;
+  }
+
+  /* Wrap-up Section */
+  .wrapup-card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .wrapup-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .wrapup-card p, .wrapup-card li {
+    font-size: 13px;
+    color: var(--text-sub);
+    line-height: 1.7;
+  }
+  .wrapup-card ul { list-style: none; }
+  .wrapup-card ul li::before { content: '▸ '; color: var(--primary); font-weight: 700; }
+
+  /* Tip box */
+  .tip-box {
+    background: #fff8e1;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    border: 1px solid #ffe082;
+  }
+  .tip-box strong { color: #f57f17; }
+
+  /* Map hint */
+  .floor-tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 8px;
+    margin-left: 4px;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px 16px 16px;
+    font-size: 11px;
+    color: #bbb;
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in { animation: fadeIn 0.4s ease forwards; }
+
+  /* Confetti overlay */
+  .confetti-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 9999;
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-top">
+    <span class="header-badge" data-ko="2026 한일 신입 교류회" data-ja="2026 日韓新入交流会">2026 한일 신입 교류회</span>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+      <button class="lang-btn" onclick="setLang('ja')">日本語</button>
+    </div>
+  </div>
+  <h1 data-ko="🏢 사옥투어 미션 가이드" data-ja="🏢 オフィスツアー ミッションガイド">🏢 사옥투어 미션 가이드</h1>
+  <p data-ko="NHN 판교 사옥 | 90분 어드벤처" data-ja="NHN 板橋オフィス | 90分アドベンチャー">NHN 판교 사옥 | 90분 어드벤처</p>
+</div>
+
+<!-- Timer -->
+<div class="timer-bar">
+  <div class="timer-left">
+    <div class="timer-icon">⏱️</div>
+    <div>
+      <div class="timer-label" data-ko="남은 시간" data-ja="残り時間">남은 시간</div>
+      <div class="timer-value" id="timer">90:00</div>
+    </div>
+  </div>
+  <div>
+    <button class="timer-btn start" id="timerBtn" onclick="toggleTimer()" data-ko-start="시작" data-ja-start="スタート" data-ko-pause="일시정지" data-ja-pause="一時停止">시작</button>
+    <button class="timer-btn reset" onclick="resetTimer()" data-ko="리셋" data-ja="リセット">리셋</button>
+  </div>
+</div>
+
+<!-- Schedule Overview -->
+<div class="section">
+  <div class="section-title" data-ko="📋 일정 흐름" data-ja="📋 スケジュール">📋 <span data-ko="일정 흐름" data-ja="スケジュール">일정 흐름</span></div>
+  <div class="schedule-card">
+    <div class="schedule-item">
+      <div class="schedule-time">0:00</div>
+      <div class="schedule-emoji">🎤</div>
+      <div>
+        <div class="schedule-desc" data-ko="소개 & 팀 빌딩" data-ja="紹介 & チームビルディング">소개 & 팀 빌딩</div>
+        <div class="schedule-loc">10F WE! PLACE <span class="floor-tag">15min</span></div>
+      </div>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-time">0:15</div>
+      <div class="schedule-emoji">🏃</div>
+      <div>
+        <div class="schedule-desc" data-ko="미션 투어 (5개 미션)" data-ja="ミッションツアー (5つのミッション)">미션 투어 (5개 미션)</div>
+        <div class="schedule-loc" data-ko="전 층 이동" data-ja="全フロア移動">전 층 이동 <span class="floor-tag">60min</span></div>
+      </div>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-time">1:15</div>
+      <div class="schedule-emoji">📸</div>
+      <div>
+        <div class="schedule-desc" data-ko="포토월 & 슬라이도 타임" data-ja="フォトウォール & Slidoタイム">포토월 & 슬라이도 타임</div>
+        <div class="schedule-loc">10F WE! PLACE <span class="floor-tag">15min</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tip -->
+<div class="section">
+  <div class="tip-box" data-ko="<strong>💡 TIP</strong> 모든 인증샷에는 <strong>팀원 전원</strong>이 포함되어야 합니다! 촬영자도 다른 미션에서는 교대하세요." data-ja="<strong>💡 TIP</strong> すべての認証ショットには<strong>チーム全員</strong>が含まれる必要があります！撮影者も他のミッションでは交代しましょう。">
+    <strong>💡 TIP</strong> 모든 인증샷에는 <strong>팀원 전원</strong>이 포함되어야 합니다! 촬영자도 다른 미션에서는 교대하세요.
+  </div>
+</div>
+
+<!-- Progress -->
+<div class="progress-section">
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progressBar"></div>
+  </div>
+  <div class="progress-text" id="progressText" data-ko="미션 완료: 0 / 5" data-ja="ミッション完了: 0 / 5">미션 완료: 0 / 5</div>
+</div>
+
+<!-- Missions -->
+<div class="section" id="missionsContainer">
+
+  <!-- Mission 1 -->
+  <div class="mission-card" data-mission="1">
+    <div class="mission-header" onclick="toggleMission(1)">
+      <div class="mission-number"><span class="mission-num-text">1</span></div>
+      <div class="mission-header-text">
+        <div class="mission-title" data-ko="IDC를 몸으로 말하라!" data-ja="IDCを体で表現せよ！">IDC를 몸으로 말하라!</div>
+        <div class="mission-location">📍 <span data-ko="10층 하늘공원 (옥상)" data-ja="10F スカイガーデン（屋上）">10층 하늘공원 (옥상)</span></div>
+      </div>
+      <div class="mission-chevron">▾</div>
+    </div>
+    <div class="mission-body">
+      <div class="mission-content">
+        <div class="mission-desc" data-ko="옥상에서 IDC가 보이는 위치를 찾아, 팀원들이 몸으로 <strong>\"IDC\"</strong> 또는 <strong>\"CLOUD\"</strong> 글자를 만들어 인증샷을 찍어라!" data-ja="屋上からIDCが見える位置を探し、チームメンバーが体で<strong>「IDC」</strong>または<strong>「CLOUD」</strong>の文字を作って認証ショットを撮れ！">
+          옥상에서 IDC가 보이는 위치를 찾아, 팀원들이 몸으로 <strong>"IDC"</strong> 또는 <strong>"CLOUD"</strong> 글자를 만들어 인증샷을 찍어라!
+        </div>
+        <ul class="mission-checklist">
+          <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="IDC가 배경에 나오도록 구도 잡기" data-ja="IDCが背景に入るように構図を決める">IDC가 배경에 나오도록 구도 잡기</span></li>
+          <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="팀원 전원이 참여하여 몸으로 알파벳 표현" data-ja="チーム全員が参加して体でアルファベットを表現">팀원 전원이 참여하여 몸으로 알파벳 표현</span></li>
+          <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="1명이 촬영 담당" data-ja="1名が撮影担当">1명이 촬영 담당</span></li>
+        </ul>
+        <button class="mission-complete-btn" onclick="completeMission(1)" data-ko="미션 완료! 🎉" data-ja="ミッション完了！🎉" data-ko-done="완료됨 ✓" data-ja-done="完了 ✓">미션 완료! 🎉</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mission 2 -->
+  <div class="mission-card" data-mission="2">
+    <div class="mission-header" onclick="toggleMission(2)">
+      <div class="mission-number"><span class="mission-num-text">2</span></div>
+      <div class="mission-header-text">
+        <div class="mission-title" data-ko="작품 수를 맞혀라!" data-ja="作品数を当てろ！">작품 수를 맞혀라!</div>
+        <div class="mission-location">📍 <span data-ko="전 층 작품 전시" data-ja="全フロア 作品展示">전 층 작품 전시</span></div>
+      </div>
+      <div class="mission-chevron">▾</div>
+    </div>
+    <div class="mission-body">
+      <div class="mission-content">
+        <div class="mission-desc" data-ko="건물 내 전시된 작품 중 마음에 드는 작품 1개를 선정하고, 건물 내 작품의 <strong>총 수</strong>를 손가락이나 몸짓으로 표현하며 인증샷을 찍어라!" data-ja="建物内に展示されている作品の中からお気に入りの作品を1つ選び、建物内の作品の<strong>総数</strong>を指やジェスチャーで表現して認証ショットを撮れ！">
+          건물 내 전시된 작품 중 마음에 드는 작품 1개를 선정하고, 건물 내 작품의 <strong>총 수</strong>를 손가락이나 몸짓으로 표현하며 인증샷을 찍어라!
+        </div>
+        <ul class="mission-checklist">
+          <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="팀이 가장 좋아하는 작품 1개 앞에서 촬영" data-ja="チームのお気に入り作品1つの前で撮影">팀이 가장 좋아하는 작품 1개 앞에서 촬영</span></li>
+          <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="팀원 전원이 손가락/몸짓으로 작품 총 수 표현" data-ja="チーム全員が指/ジェスチャーで作品総数を表現">팀원 전원이 손가락/몸짓으로 작품 총 수 표현</span></li>
+          <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="예: 총 23개 → 2명이 두 손 펴기(10개씩), 1명이 손가락 3개" data-ja="例: 合計23個 → 2人が両手（10個ずつ）、1人が指3本">예: 총 23개 → 2명이 두 손 펴기(10개씩), 1명이 손가락 3개</span></li>
+        </ul>
+        <button class="mission-complete-btn" onclick="completeMission(2)" data-ko="미션 완료! 🎉" data-ja="ミッション完了！🎉" data-ko-done="완료됨 ✓" data-ja-done="完了 ✓">미션 완료! 🎉</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mission 3 -->
+  <div class="mission-card" data-mission="3">
+    <div class="mission-header" onclick="toggleMission(3)">
+      <div class="mission-number"><span class="mission-num-text">3</span></div>
+      <div class="mission-header-text">
+        <div class="mission-title" data-ko="타임머신 라이브러리" data-ja="タイムマシン ライブラリー">타임머신 라이브러리</div>
+        <div class="mission-location">📍 <span data-ko="1층 라이브러리" data-ja="1F ライブラリー">1층 라이브러리</span></div>
+      </div>
+      <div class="mission-chevron">▾</div>
+    </div>
+    <div class="mission-body">
+      <div class="mission-content">
+        <div class="mission-desc" data-ko="팀원 중 <strong>가장 어린 사람</strong>과 <strong>가장 나이 많은 사람</strong>의 태어난 해에 출판된 도서를 각각 찾아 인증샷을 찍어라!" data-ja="チームメンバーの中で<strong>最年少</strong>と<strong>最年長</strong>の生まれ年に出版された本をそれぞれ探して認証ショットを撮れ！">
+          팀원 중 <strong>가장 어린 사람</strong>과 <strong>가장 나이 많은 사람</strong>의 태어난 해에 출판된 도서를 각각 찾아 인증샷을 찍어라!
+        </div>
+        <ul class="mission-checklist">
+          <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="최연소 탄생년도 도서 1권 찾기" data-ja="最年少の生まれ年の本を1冊見つける">최연소 탄생년도 도서 1권 찾기</span></li>
+          <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="최연장 탄생년도 도서 1권 찾기" data-ja="最年長の生まれ年の本を1冊見つける">최연장 탄생년도 도서 1권 찾기</span></li>
+          <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="해당 도서를 들고 있는 본인과 팀원이 함께 촬영" data-ja="その本を持っている本人とチームメンバーと一緒に撮影">해당 도서를 들고 있는 본인과 팀원이 함께 촬영</span></li>
+        </ul>
+        <button class="mission-complete-btn" onclick="completeMission(3)" data-ko="미션 완료! 🎉" data-ja="ミッション完了！🎉" data-ko-done="완료됨 ✓" data-ja-done="完了 ✓">미션 완료! 🎉</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mission 4 -->
+  <div class="mission-card" data-mission="4">
+    <div class="mission-header" onclick="toggleMission(4)">
+      <div class="mission-number"><span class="mission-num-text">4</span></div>
+      <div class="mission-header-text">
+        <div class="mission-title" data-ko="점프샷 챌린지" data-ja="ジャンプショット チャレンジ">점프샷 챌린지</div>
+        <div class="mission-location">📍 <span data-ko="1층 외부" data-ja="1F 外部">1층 외부</span></div>
+      </div>
+      <div class="mission-chevron">▾</div>
+    </div>
+    <div class="mission-body">
+      <div class="mission-content">
+        <div class="mission-desc" data-ko="사옥 건물이 전부 나오도록, 1명이 촬영자가 되어 나머지 팀원들의 <strong>점프샷</strong>을 찍어라!" data-ja="オフィスビル全体が映るように、1名が撮影者になり、残りのチームメンバーの<strong>ジャンプショット</strong>を撮れ！">
+          사옥 건물이 전부 나오도록, 1명이 촬영자가 되어 나머지 팀원들의 <strong>점프샷</strong>을 찍어라!
+        </div>
+        <ul class="mission-checklist">
+          <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="건물 전체가 배경에 나오도록 촬영" data-ja="建物全体が背景に入るように撮影">건물 전체가 배경에 나오도록 촬영</span></li>
+          <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="촬영자 1명, 나머지 팀원 전원 동시 점프" data-ja="撮影者1名、残り全員が同時ジャンプ">촬영자 1명, 나머지 팀원 전원 동시 점프</span></li>
+          <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="전원의 발이 동시에 공중에 떠야 성공!" data-ja="全員の足が同時に空中に浮いたら成功！">전원의 발이 동시에 공중에 떠야 성공!</span></li>
+        </ul>
+        <button class="mission-complete-btn" onclick="completeMission(4)" data-ko="미션 완료! 🎉" data-ja="ミッション完了！🎉" data-ko-done="완료됨 ✓" data-ja-done="완료 ✓">미션 완료! 🎉</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mission 5 -->
+  <div class="mission-card" data-mission="5">
+    <div class="mission-header" onclick="toggleMission(5)">
+      <div class="mission-number"><span class="mission-num-text">5</span></div>
+      <div class="mission-header-text">
+        <div class="mission-title" data-ko="히든 스팟을 찾아라!" data-ja="ヒドゥンスポットを探せ！">히든 스팟을 찾아라!</div>
+        <div class="mission-location">📍 <span data-ko="전 층" data-ja="全フロア">전 층</span></div>
+      </div>
+      <div class="mission-chevron">▾</div>
+    </div>
+    <div class="mission-body">
+      <div class="mission-content">
+        <div class="mission-desc" data-ko="미션지에 인쇄된 <strong>클로즈업 사진</strong> 속 장소가 어디인지 찾아가 인증샷을 찍어라!" data-ja="ミッションシートに印刷された<strong>クローズアップ写真</strong>の場所がどこか探して認証ショットを撮れ！">
+          미션지에 인쇄된 <strong>클로즈업 사진</strong> 속 장소가 어디인지 찾아가 인증샷을 찍어라!
+        </div>
+        <ul class="mission-checklist">
+          <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="미션지의 클로즈업 사진 확인 (작품 일부, 벽면 문구, 숨겨진 로고 등)" data-ja="ミッションシートのクローズアップ写真を確認（作品の一部、壁面の文字、隠れたロゴなど）">미션지의 클로즈업 사진 확인 (작품 일부, 벽면 문구, 숨겨진 로고 등)</span></li>
+          <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="해당 장소를 찾아 이동" data-ja="その場所を見つけて移動">해당 장소를 찾아 이동</span></li>
+          <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="팀원 포함으로 인증샷 촬영" data-ja="チームメンバーを含めて認証ショットを撮影">팀원 포함으로 인증샷 촬영</span></li>
+        </ul>
+        <button class="mission-complete-btn" onclick="completeMission(5)" data-ko="미션 완료! 🎉" data-ja="ミッション完了！🎉" data-ko-done="완료됨 ✓" data-ja-done="完了 ✓">미션 완료! 🎉</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Wrap-up Section -->
+<div class="section">
+  <div class="section-title" data-ko="🎬 마무리" data-ja="🎬 まとめ">🎬 <span data-ko="마무리" data-ja="まとめ">마무리</span></div>
+
+  <div class="wrapup-card">
+    <h3>📸 <span data-ko="포토월 감상" data-ja="フォトウォール鑑賞">포토월 감상</span> <span class="floor-tag">5min</span></h3>
+    <p data-ko="10층 WE! PLACE로 복귀하며 프로젝터의 라이브 포토월을 감상하세요." data-ja="10F WE! PLACEに戻りながら、プロジェクターのライブフォトウォールを鑑賞しましょう。">10층 WE! PLACE로 복귀하며 프로젝터의 라이브 포토월을 감상하세요.</p>
+  </div>
+
+  <div class="wrapup-card">
+    <h3>🎙️ <span data-ko="슬라이도 타임" data-ja="Slidoタイム">슬라이도 타임</span> <span class="floor-tag">10min</span></h3>
+    <ul>
+      <li><span data-ko="투어 중 올라온 응원 메시지를 함께 읽기" data-ja="ツアー中に寄せられた応援メッセージを一緒に読む">투어 중 올라온 응원 메시지를 함께 읽기</span></li>
+      <li><span data-ko="\"오늘 사옥투어를 한 단어로?\" — 워드클라우드 완성!" data-ja="「今日のオフィスツアーを一言で？」— ワードクラウド完成！">\"오늘 사옥투어를 한 단어로?\" — 워드클라우드 완성!</span></li>
+      <li><span data-ko="한국어+일본어가 섞인 워드클라우드 = 오늘의 기념품 🎁" data-ja="韓国語+日本語が混ざったワードクラウド = 今日の記念品 🎁">한국어+일본어가 섞인 워드클라우드 = 오늘의 기념품 🎁</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <span data-ko="2026 한일 신입 교류회 | NHN" data-ja="2026 日韓新入交流会 | NHN">2026 한일 신입 교류회 | NHN</span>
+</div>
+
+<!-- Confetti Canvas -->
+<canvas class="confetti-overlay" id="confetti"></canvas>
+
+<script>
+// === Language Toggle ===
+let currentLang = 'ko';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+
+  document.querySelectorAll('[data-ko]').forEach(el => {
+    const text = el.getAttribute(`data-${lang}`);
+    if (text) {
+      if (el.innerHTML.includes('<') && text.includes('<')) {
+        el.innerHTML = text;
+      } else {
+        el.textContent = text;
+      }
+    }
+  });
+
+  // Update timer button
+  updateTimerBtnText();
+  // Update progress text
+  updateProgress();
+  // Update complete buttons
+  updateCompleteBtns();
+}
+
+// === Timer ===
+let timerSeconds = 90 * 60;
+let timerInterval = null;
+let timerRunning = false;
+
+function updateTimerDisplay() {
+  const m = Math.floor(timerSeconds / 60);
+  const s = timerSeconds % 60;
+  document.getElementById('timer').textContent =
+    `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+
+function updateTimerBtnText() {
+  const btn = document.getElementById('timerBtn');
+  if (timerRunning) {
+    btn.textContent = btn.getAttribute(`data-${currentLang}-pause`);
+  } else {
+    btn.textContent = btn.getAttribute(`data-${currentLang}-start`);
+  }
+}
+
+function toggleTimer() {
+  const btn = document.getElementById('timerBtn');
+  if (timerRunning) {
+    clearInterval(timerInterval);
+    timerRunning = false;
+    btn.classList.remove('pause');
+    btn.classList.add('start');
+  } else {
+    timerRunning = true;
+    btn.classList.remove('start');
+    btn.classList.add('pause');
+    timerInterval = setInterval(() => {
+      if (timerSeconds > 0) {
+        timerSeconds--;
+        updateTimerDisplay();
+      } else {
+        clearInterval(timerInterval);
+        timerRunning = false;
+        btn.classList.remove('pause');
+        btn.classList.add('start');
+        // Vibrate if available
+        if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+      }
+    }, 1000);
+  }
+  updateTimerBtnText();
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
+  timerRunning = false;
+  timerSeconds = 90 * 60;
+  updateTimerDisplay();
+  const btn = document.getElementById('timerBtn');
+  btn.classList.remove('pause');
+  btn.classList.add('start');
+  updateTimerBtnText();
+}
+
+// === Mission Toggle ===
+function toggleMission(num) {
+  const card = document.querySelector(`.mission-card[data-mission="${num}"]`);
+  const wasOpen = card.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.mission-card').forEach(c => c.classList.remove('open'));
+  // Toggle clicked
+  if (!wasOpen) card.classList.add('open');
+}
+
+// === Checklist ===
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  el.textContent = el.classList.contains('checked') ? '✓' : '';
+}
+
+// === Mission Complete ===
+let completedMissions = new Set();
+
+function completeMission(num) {
+  if (completedMissions.has(num)) return;
+  completedMissions.add(num);
+
+  const card = document.querySelector(`.mission-card[data-mission="${num}"]`);
+  card.classList.add('completed');
+
+  // Check all items
+  card.querySelectorAll('.check-icon').forEach(ci => {
+    ci.classList.add('checked');
+    ci.textContent = '✓';
+  });
+
+  updateCompleteBtns();
+  updateProgress();
+
+  // Confetti on all complete
+  if (completedMissions.size === 5) {
+    launchConfetti();
+  }
+}
+
+function updateCompleteBtns() {
+  completedMissions.forEach(num => {
+    const btn = document.querySelector(`.mission-card[data-mission="${num}"] .mission-complete-btn`);
+    if (btn) {
+      btn.classList.add('done');
+      btn.textContent = btn.getAttribute(`data-${currentLang}-done`);
+    }
+  });
+}
+
+// === Progress ===
+function updateProgress() {
+  const count = completedMissions.size;
+  const pct = (count / 5) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  const label = currentLang === 'ko' ? `미션 완료: ${count} / 5` : `ミッション完了: ${count} / 5`;
+  document.getElementById('progressText').textContent = label;
+}
+
+// === Confetti ===
+function launchConfetti() {
+  const canvas = document.getElementById('confetti');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const pieces = [];
+  const colors = ['#00C73C', '#ff6b35', '#FFD700', '#FF69B4', '#00BFFF', '#FF4444'];
+
+  for (let i = 0; i < 120; i++) {
+    pieces.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      w: Math.random() * 10 + 5,
+      h: Math.random() * 6 + 3,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      vy: Math.random() * 3 + 2,
+      vx: (Math.random() - 0.5) * 2,
+      rot: Math.random() * 360,
+      vr: (Math.random() - 0.5) * 10,
+      opacity: 1
+    });
+  }
+
+  let frame = 0;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let alive = false;
+    pieces.forEach(p => {
+      if (p.opacity <= 0) return;
+      alive = true;
+      p.y += p.vy;
+      p.x += p.vx;
+      p.rot += p.vr;
+      if (frame > 60) p.opacity -= 0.01;
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot * Math.PI / 180);
+      ctx.globalAlpha = Math.max(0, p.opacity);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    });
+    frame++;
+    if (alive) requestAnimationFrame(draw);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  draw();
+}
+
+// === Init: open first mission ===
+document.querySelector('.mission-card[data-mission="1"]').classList.add('open');
+</script>
+
+</body>
+</html>
