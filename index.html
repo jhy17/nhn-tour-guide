@@ -16,7 +16,6 @@
     --red: #e63b2e;
     --pink: #e88bc7;
     --green: #2db84b;
-    --green-dark: #1e9e3a;
     --gold: #c4a84d;
     --blue: #3366cc;
     --success: #2db84b;
@@ -28,38 +27,18 @@
 
   body {
     font-family: 'Noto Sans KR', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    max-width: 480px;
-    margin: 0 auto;
-    padding-bottom: 80px;
+    background: var(--bg); color: var(--text); line-height: 1.6; max-width: 480px; margin: 0 auto; padding-bottom: 80px;
   }
 
-  /* ===== Header ===== */
-  .header {
-    background: var(--bg);
-    position: relative;
-    overflow: hidden;
-  }
+  .header { background: var(--bg); position: relative; overflow: hidden; }
   .header::before {
-    content: '';
-    position: absolute;
-    top: 20px; right: 30px;
-    width: 12px; height: 12px;
-    background: var(--red);
-    border-radius: 50%;
-    box-shadow:
-      -180px 15px 0 8px var(--green),
-      -60px 80px 0 5px var(--gold),
-      40px 60px 0 4px var(--pink),
-      -120px 130px 0 6px var(--blue),
-      20px 140px 0 3px var(--red);
+    content: ''; position: absolute; top: 20px; right: 30px; width: 12px; height: 12px;
+    background: var(--red); border-radius: 50%;
+    box-shadow: -180px 15px 0 8px var(--green), -60px 80px 0 5px var(--gold),
+      40px 60px 0 4px var(--pink), -120px 130px 0 6px var(--blue), 20px 140px 0 3px var(--red);
   }
   .header-inner { padding: 28px 20px 20px; position: relative; z-index: 2; }
-  .header-top {
-    display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
-  }
+  .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
   .header-date { font-size: 12px; font-weight: 700; color: var(--text-sub); letter-spacing: 1px; }
   .lang-toggle { display: flex; background: rgba(0,0,0,0.06); border-radius: 20px; overflow: hidden; }
   .lang-btn {
@@ -69,17 +48,12 @@
   .lang-btn.active { background: var(--text); color: var(--bg); border-radius: 20px; }
 
   .hero { padding: 10px 20px 28px; position: relative; }
-  .hero-year {
-    font-size: 64px; font-weight: 900; line-height: 0.9; letter-spacing: -4px; text-align: left; margin-bottom: 4px;
-  }
+  .hero-year { font-size: 64px; font-weight: 900; line-height: 0.9; letter-spacing: -4px; text-align: left; margin-bottom: 4px; }
   .hero-title { font-size: 26px; font-weight: 900; letter-spacing: -1px; text-align: left; line-height: 1.3; }
   .hero-title .kr { display: block; }
   .hero-title .jp { display: block; font-size: 20px; color: var(--text-sub); margin-top: 2px; }
   .hero-sub { font-size: 13px; color: var(--text-sub); text-align: left; margin-top: 8px; font-weight: 500; }
-
-  .hero-hands {
-    position: absolute; right: 10px; top: 0px; width: 140px; height: 140px; opacity: 0.9;
-  }
+  .hero-hands { position: absolute; right: 10px; top: 0px; width: 140px; height: 140px; opacity: 0.9; }
 
   .confetti-strip {
     height: 6px;
@@ -89,7 +63,6 @@
       var(--blue) 96px, var(--blue) 120px);
   }
 
-  /* ===== Countdown ===== */
   .countdown-bar {
     background: var(--card); margin: 16px; border-radius: 16px; padding: 16px 20px;
     border: 1px solid var(--border); text-align: center;
@@ -99,15 +72,11 @@
   .countdown-target { font-size: 11px; color: var(--text-sub); margin-top: 4px; }
   .countdown-done { color: var(--red); font-weight: 700; }
 
-  /* ===== Section ===== */
   .section { padding: 0 16px; margin-bottom: 20px; }
   .section-title { font-size: 16px; font-weight: 900; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
 
-  /* ===== Schedule ===== */
   .schedule-card { background: var(--card); border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
-  .schedule-item {
-    display: flex; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--border); gap: 12px;
-  }
+  .schedule-item { display: flex; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--border); gap: 12px; }
   .schedule-item:last-child { border-bottom: none; }
   .schedule-time { font-size: 13px; font-weight: 900; color: var(--red); min-width: 90px; white-space: nowrap; }
   .schedule-emoji { font-size: 20px; }
@@ -118,16 +87,11 @@
     font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 8px; margin-left: 4px;
   }
 
-  /* ===== Progress ===== */
   .progress-section { padding: 0 16px; margin-bottom: 24px; }
   .progress-bar-bg { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; margin-bottom: 8px; }
-  .progress-bar-fill {
-    height: 100%; background: linear-gradient(90deg, var(--green), var(--gold));
-    border-radius: 4px; transition: width 0.5s ease; width: 0%;
-  }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--gold)); border-radius: 4px; transition: width 0.5s ease; width: 0%; }
   .progress-text { font-size: 12px; color: var(--text-sub); text-align: center; font-weight: 700; }
 
-  /* ===== Mission Cards ===== */
   .mission-card {
     background: var(--card); border-radius: 16px; margin-bottom: 14px;
     overflow: hidden; border: 1px solid var(--border); transition: all 0.3s;
@@ -154,27 +118,39 @@
   .mission-chevron { font-size: 18px; color: var(--text-sub); transition: transform 0.3s; flex-shrink: 0; }
   .mission-card.open .mission-chevron { transform: rotate(180deg); }
   .mission-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-  .mission-card.open .mission-body { max-height: 600px; }
+  .mission-card.open .mission-body { max-height: 800px; }
   .mission-content { padding: 0 16px 16px; }
-  .mission-desc { font-size: 14px; line-height: 1.8; margin-bottom: 14px; }
-  .mission-checklist { list-style: none; margin-bottom: 16px; }
-  .mission-checklist li {
-    display: flex; align-items: flex-start; gap: 10px; padding: 8px 0;
-    font-size: 13px; border-bottom: 1px solid var(--border);
+
+  .mission-step {
+    display: flex; align-items: flex-start; gap: 10px; padding: 10px 0;
+    font-size: 13px; border-bottom: 1px solid var(--border); line-height: 1.6;
   }
-  .mission-checklist li:last-child { border-bottom: none; }
-  .check-icon {
-    width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--border);
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    cursor: pointer; transition: all 0.2s; margin-top: 1px; font-size: 12px;
+  .mission-step:last-of-type { border-bottom: none; }
+  .step-num {
+    width: 20px; height: 20px; border-radius: 50%; background: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 900; flex-shrink: 0; margin-top: 2px; color: var(--text-sub);
   }
-  .check-icon.checked { background: var(--success); border-color: var(--success); color: white; }
+  .mission-card[data-mission="1"] .step-num { background: rgba(230,59,46,0.12); color: var(--red); }
+  .mission-card[data-mission="2"] .step-num { background: rgba(232,139,199,0.15); color: #c06aa8; }
+  .mission-card[data-mission="3"] .step-num { background: rgba(196,168,77,0.15); color: #a08830; }
+  .mission-card[data-mission="4"] .step-num { background: rgba(51,102,204,0.12); color: var(--blue); }
+  .mission-card[data-mission="5"] .step-num { background: rgba(45,184,75,0.12); color: var(--green); }
+
+  .step-text { flex: 1; }
+
+  .mission-steps { list-style: none; margin-bottom: 16px; }
 
   .upload-link {
     display: inline-flex; align-items: center; gap: 4px;
     color: var(--blue); font-weight: 700; text-decoration: none; font-size: 13px;
   }
   .upload-link:hover { text-decoration: underline; }
+
+  .mission-img-placeholder {
+    background: var(--border); border-radius: 10px; padding: 24px; text-align: center;
+    color: var(--text-sub); font-size: 12px; margin: 8px 0 4px 30px;
+  }
 
   .mission-complete-btn {
     width: 100%; padding: 12px; border: none; border-radius: 12px;
@@ -189,23 +165,24 @@
   .mission-complete-btn:hover { opacity: 0.9; }
   .mission-complete-btn.done { background: var(--success) !important; }
 
-  /* ===== Wrap-up ===== */
   .wrapup-card {
     background: var(--card); border-radius: 16px; padding: 20px; margin-bottom: 14px; border: 1px solid var(--border);
   }
-  .wrapup-card h3 { font-size: 15px; font-weight: 900; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-  .wrapup-card p, .wrapup-card li { font-size: 13px; color: var(--text-sub); line-height: 1.8; }
-  .wrapup-card ul { list-style: none; }
-  .wrapup-card ul li::before { content: '\25B8 '; color: var(--red); font-weight: 700; }
+  .wrapup-card h3 { font-size: 15px; font-weight: 900; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .wrapup-card p { font-size: 13px; color: var(--text-sub); line-height: 1.8; margin-bottom: 8px; }
+  .wrapup-card p:last-child { margin-bottom: 0; }
+  .msg-link {
+    display: inline-flex; align-items: center; gap: 4px;
+    color: var(--red); font-weight: 700; text-decoration: none; font-size: 13px;
+  }
+  .msg-link:hover { text-decoration: underline; }
 
   .footer { text-align: center; padding: 32px 16px 16px; font-size: 11px; color: #b5aa9e; font-weight: 500; }
-
   .confetti-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 9999; }
 </style>
 </head>
 <body>
 
-<!-- Header -->
 <div class="header">
   <div class="header-inner">
     <div class="header-top">
@@ -240,7 +217,7 @@
 
 <!-- Countdown -->
 <div class="countdown-bar">
-  <div class="countdown-label" data-ko="미션 시작까지" data-ja="ミッション開始まで">미션 시작까지</div>
+  <div class="countdown-label" data-ko="미션 종료까지" data-ja="ミッション終了まで">미션 종료까지</div>
   <div class="countdown-value" id="countdown">--:--:--:--</div>
   <div class="countdown-target" data-ko="4/14(화) 17:15 종료" data-ja="4/14(火) 17:15 終了">4/14(화) 17:15 종료</div>
 </div>
@@ -290,22 +267,16 @@
     <div class="mission-header" onclick="toggleMission(1)">
       <div class="mission-number"><span class="mission-num-text">1</span><span class="mission-check-text">&#10003;</span></div>
       <div class="mission-header-text">
-        <div class="mission-title" data-ko="IDC를 몸으로 말하라!" data-ja="IDCを体で表現せよ！">IDC를 몸으로 말하라!</div>
+        <div class="mission-title" data-ko="NHN 판교 IDC를 찾아라!" data-ja="NHN 板橋IDCを探せ！">NHN 판교 IDC를 찾아라!</div>
         <div class="mission-location">&#128205; <span data-ko="10층 하늘공원 (옥상)" data-ja="10F スカイガーデン（屋上）">10층 하늘공원 (옥상)</span></div>
       </div>
       <div class="mission-chevron">&#9662;</div>
     </div>
     <div class="mission-body"><div class="mission-content">
-      <div class="mission-desc" data-ko="10층 하늘공원에서 보이는 <strong>판교 IDC(NCC)</strong>를 찾아라!" data-ja="10Fスカイガーデンから見える<strong>板橋IDC（NCC）</strong>を探せ！">10층 하늘공원에서 보이는 <strong>판교 IDC(NCC)</strong>를 찾아라!</div>
-      <ul class="mission-checklist">
-        <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="IDC가 배경에 나오도록 구도 잡기" data-ja="IDCが背景に入るように構図を決める">IDC가 배경에 나오도록 구도 잡기</span></li>
-        <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="팀원들과 함께 몸으로 IDC 또는 CLOUD 알파벳을 표현하기" data-ja="チームメンバーと一緒に体でIDCまたはCLOUDのアルファベットを表現する">팀원들과 함께 몸으로 IDC 또는 CLOUD 알파벳을 표현하기</span></li>
-        <li><span class="check-icon" onclick="toggleCheck(this)"></span>
-          <span>
-            <span data-ko="1명이 사진 찍어 올리기" data-ja="1名が写真を撮ってアップロード">1명이 사진 찍어 올리기</span>
-            &nbsp;<a href="#" class="upload-link" data-ko="&#10132; 업로드 바로가기" data-ja="&#10132; アップロードへ">&#10132; 업로드 바로가기</a>
-          </span>
-        </li>
+      <ul class="mission-steps">
+        <li class="mission-step"><span class="step-num">1</span><span class="step-text" data-ko="IDC가 배경에 나오도록 구도 잡기" data-ja="IDCが背景に入るように構図を決める">IDC가 배경에 나오도록 구도 잡기</span></li>
+        <li class="mission-step"><span class="step-num">2</span><span class="step-text" data-ko="팀원들과 함께 몸으로 IDC 또는 CLOUD 알파벳을 표현하기" data-ja="チームメンバーと一緒に体でIDCまたはCLOUDのアルファベットを表現する">팀원들과 함께 몸으로 IDC 또는 CLOUD 알파벳을 표현하기</span></li>
+        <li class="mission-step"><span class="step-num">3</span><span class="step-text"><span data-ko="1명이 사진 찍어 올리기" data-ja="1名が写真を撮ってアップロード">1명이 사진 찍어 올리기</span> <a href="#" class="upload-link" data-ko="&#10132; 업로드 바로가기" data-ja="&#10132; アップロードへ">&#10132; 업로드 바로가기</a></span></li>
       </ul>
       <button class="mission-complete-btn" onclick="toggleComplete(1)" data-ko="미션 완료!" data-ja="ミッション完了！" data-ko-done="완료됨 &#10003;" data-ja-done="完了 &#10003;">미션 완료!</button>
     </div></div>
@@ -322,16 +293,11 @@
       <div class="mission-chevron">&#9662;</div>
     </div>
     <div class="mission-body"><div class="mission-content">
-      <div class="mission-desc" data-ko="건물 내 전시된 작품 중 마음에 드는 작품 1개를 선정하고, 건물 내 작품의 <strong>총 수</strong>를 손가락이나 몸짓으로 표현하며 인증샷을 찍어라!" data-ja="建物内に展示されている作品の中からお気に入りの作品を1つ選び、建物内の作品の<strong>総数</strong>を指やジェスチャーで表現して認証ショットを撮れ！">건물 내 전시된 작품 중 마음에 드는 작품 1개를 선정하고, 건물 내 작품의 <strong>총 수</strong>를 손가락이나 몸짓으로 표현하며 인증샷을 찍어라!</div>
-      <ul class="mission-checklist">
-        <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="팀이 가장 좋아하는 작품 1개 앞에서 촬영" data-ja="チームのお気に入り作品1つの前で撮影">팀이 가장 좋아하는 작품 1개 앞에서 촬영</span></li>
-        <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="팀원 전원이 손가락/몸짓으로 작품 총 수 표현" data-ja="チーム全員が指/ジェスチャーで作品総数を表現">팀원 전원이 손가락/몸짓으로 작품 총 수 표현</span></li>
-        <li><span class="check-icon" onclick="toggleCheck(this)"></span>
-          <span>
-            <span data-ko="1명이 사진 찍어 올리기" data-ja="1名が写真を撮ってアップロード">1명이 사진 찍어 올리기</span>
-            &nbsp;<a href="#" class="upload-link" data-ko="&#10132; 업로드 바로가기" data-ja="&#10132; アップロードへ">&#10132; 업로드 바로가기</a>
-          </span>
-        </li>
+      <ul class="mission-steps">
+        <li class="mission-step"><span class="step-num">1</span><span class="step-text" data-ko="플레이뮤지엄 내 작품은 총 몇 개인지 세어보기" data-ja="プレイミュージアム内の作品は全部で何個か数えてみる">플레이뮤지엄 내 작품은 총 몇 개인지 세어보기</span></li>
+        <li class="mission-step"><span class="step-num">2</span><span class="step-text" data-ko="가장 마음에 드는 작품 선정하기" data-ja="一番気に入った作品を選ぶ">가장 마음에 드는 작품 선정하기</span></li>
+        <li class="mission-step"><span class="step-num">3</span><span class="step-text" data-ko="선정한 작품 앞에서 작품 총 갯수를 손가락으로 표현하며 사진 찍기" data-ja="選んだ作品の前で作品の総数を指で表現して写真を撮る">선정한 작품 앞에서 작품 총 갯수를 손가락으로 표현하며 사진 찍기</span></li>
+        <li class="mission-step"><span class="step-num">4</span><span class="step-text"><a href="#" class="upload-link" data-ko="&#10132; 인증샷 업로드 바로가기" data-ja="&#10132; 認証ショットアップロードへ">&#10132; 인증샷 업로드 바로가기</a></span></li>
       </ul>
       <button class="mission-complete-btn" onclick="toggleComplete(2)" data-ko="미션 완료!" data-ja="ミッション完了！" data-ko-done="완료됨 &#10003;" data-ja-done="完了 &#10003;">미션 완료!</button>
     </div></div>
@@ -348,16 +314,10 @@
       <div class="mission-chevron">&#9662;</div>
     </div>
     <div class="mission-body"><div class="mission-content">
-      <div class="mission-desc" data-ko="팀원 중 <strong>가장 어린 사람</strong>과 <strong>가장 나이 많은 사람</strong>의 태어난 해에 출판된 도서를 각각 찾아 인증샷을 찍어라!" data-ja="チームメンバーの中で<strong>最年少</strong>と<strong>最年長</strong>の生まれ年に出版された本をそれぞれ探して認証ショットを撮れ！">팀원 중 <strong>가장 어린 사람</strong>과 <strong>가장 나이 많은 사람</strong>의 태어난 해에 출판된 도서를 각각 찾아 인증샷을 찍어라!</div>
-      <ul class="mission-checklist">
-        <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="최연소 탄생년도 도서 1권 찾기" data-ja="最年少の生まれ年の本を1冊見つける">최연소 탄생년도 도서 1권 찾기</span></li>
-        <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="최연장 탄생년도 도서 1권 찾기" data-ja="最年長の生まれ年の本を1冊見つける">최연장 탄생년도 도서 1권 찾기</span></li>
-        <li><span class="check-icon" onclick="toggleCheck(this)"></span>
-          <span>
-            <span data-ko="해당 도서를 들고 본인과 팀원이 함께 촬영 후 올리기" data-ja="その本を持って本人とチームメンバーと一緒に撮影してアップロード">해당 도서를 들고 본인과 팀원이 함께 촬영 후 올리기</span>
-            &nbsp;<a href="#" class="upload-link" data-ko="&#10132; 업로드 바로가기" data-ja="&#10132; アップロードへ">&#10132; 업로드 바로가기</a>
-          </span>
-        </li>
+      <ul class="mission-steps">
+        <li class="mission-step"><span class="step-num">1</span><span class="step-text" data-ko="팀원 중 가장 어린 사람과 가장 나이 많은 사람의 태어난 해에 출판된 도서 찾기" data-ja="チームメンバーの中で最年少と最年長の生まれ年に出版された本を探す">팀원 중 가장 어린 사람과 가장 나이 많은 사람의 태어난 해에 출판된 도서 찾기</span></li>
+        <li class="mission-step"><span class="step-num">2</span><span class="step-text" data-ko="해당 팀원이 도서를 들고 팀원들과 함께 사진 찍기" data-ja="該当メンバーが本を持ってチームメンバーと一緒に写真を撮る">해당 팀원이 도서를 들고 팀원들과 함께 사진 찍기</span></li>
+        <li class="mission-step"><span class="step-num">3</span><span class="step-text"><a href="#" class="upload-link" data-ko="&#10132; 인증샷 업로드 바로가기" data-ja="&#10132; 認証ショットアップロードへ">&#10132; 인증샷 업로드 바로가기</a></span></li>
       </ul>
       <button class="mission-complete-btn" onclick="toggleComplete(3)" data-ko="미션 완료!" data-ja="ミッション完了！" data-ko-done="완료됨 &#10003;" data-ja-done="完了 &#10003;">미션 완료!</button>
     </div></div>
@@ -368,22 +328,16 @@
     <div class="mission-header" onclick="toggleMission(4)">
       <div class="mission-number"><span class="mission-num-text">4</span><span class="mission-check-text">&#10003;</span></div>
       <div class="mission-header-text">
-        <div class="mission-title" data-ko="점프샷 챌린지" data-ja="ジャンプショット チャレンジ">점프샷 챌린지</div>
+        <div class="mission-title" data-ko="사옥 앞에서 점프샷 챌린지" data-ja="オフィス前でジャンプショットチャレンジ">사옥 앞에서 점프샷 챌린지</div>
         <div class="mission-location">&#128205; <span data-ko="1층 외부" data-ja="1F 外部">1층 외부</span></div>
       </div>
       <div class="mission-chevron">&#9662;</div>
     </div>
     <div class="mission-body"><div class="mission-content">
-      <div class="mission-desc" data-ko="사옥 건물이 전부 나오도록, 1명이 촬영자가 되어 나머지 팀원들의 <strong>점프샷</strong>을 찍어라!" data-ja="オフィスビル全体が映るように、1名が撮影者になり、残りのチームメンバーの<strong>ジャンプショット</strong>を撮れ！">사옥 건물이 전부 나오도록, 1명이 촬영자가 되어 나머지 팀원들의 <strong>점프샷</strong>을 찍어라!</div>
-      <ul class="mission-checklist">
-        <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="건물 전체가 배경에 나오도록 촬영" data-ja="建物全体が背景に入るように撮影">건물 전체가 배경에 나오도록 촬영</span></li>
-        <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="촬영자 1명, 나머지 팀원 전원 동시 점프" data-ja="撮影者1名、残り全員が同時ジャンプ">촬영자 1명, 나머지 팀원 전원 동시 점프</span></li>
-        <li><span class="check-icon" onclick="toggleCheck(this)"></span>
-          <span>
-            <span data-ko="전원의 발이 동시에 공중에 뜬 사진 올리기" data-ja="全員の足が同時に空中に浮いた写真をアップロード">전원의 발이 동시에 공중에 뜬 사진 올리기</span>
-            &nbsp;<a href="#" class="upload-link" data-ko="&#10132; 업로드 바로가기" data-ja="&#10132; アップロードへ">&#10132; 업로드 바로가기</a>
-          </span>
-        </li>
+      <ul class="mission-steps">
+        <li class="mission-step"><span class="step-num">1</span><span class="step-text" data-ko="사옥 건물이 전부 나오도록 구도 잡기" data-ja="オフィスビル全体が映るように構図を決める">사옥 건물이 전부 나오도록 구도 잡기</span></li>
+        <li class="mission-step"><span class="step-num">2</span><span class="step-text" data-ko="사옥 앞에서 발이 모두 공중에 뜬 점프샷 찍기" data-ja="オフィス前で全員の足が空中に浮いたジャンプショットを撮る">사옥 앞에서 발이 모두 공중에 뜬 점프샷 찍기</span></li>
+        <li class="mission-step"><span class="step-num">3</span><span class="step-text"><a href="#" class="upload-link" data-ko="&#10132; 인증샷 업로드 바로가기" data-ja="&#10132; 認証ショットアップロードへ">&#10132; 인증샷 업로드 바로가기</a></span></li>
       </ul>
       <button class="mission-complete-btn" onclick="toggleComplete(4)" data-ko="미션 완료!" data-ja="ミッション完了！" data-ko-done="완료됨 &#10003;" data-ja-done="完了 &#10003;">미션 완료!</button>
     </div></div>
@@ -400,16 +354,14 @@
       <div class="mission-chevron">&#9662;</div>
     </div>
     <div class="mission-body"><div class="mission-content">
-      <div class="mission-desc" data-ko="미션지에 인쇄된 <strong>클로즈업 사진</strong> 속 장소가 어디인지 찾아가 인증샷을 찍어라!" data-ja="ミッションシートに印刷された<strong>クローズアップ写真</strong>の場所がどこか探して認証ショットを撮れ！">미션지에 인쇄된 <strong>클로즈업 사진</strong> 속 장소가 어디인지 찾아가 인증샷을 찍어라!</div>
-      <ul class="mission-checklist">
-        <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="미션지의 클로즈업 사진 확인 (작품 일부, 벽면 문구, 숨겨진 로고 등)" data-ja="ミッションシートのクローズアップ写真を確認（作品の一部、壁面の文字、隠れたロゴなど）">미션지의 클로즈업 사진 확인 (작품 일부, 벽면 문구, 숨겨진 로고 등)</span></li>
-        <li><span class="check-icon" onclick="toggleCheck(this)"></span><span data-ko="해당 장소를 찾아 이동" data-ja="その場所を見つけて移動">해당 장소를 찾아 이동</span></li>
-        <li><span class="check-icon" onclick="toggleCheck(this)"></span>
-          <span>
-            <span data-ko="팀원 포함으로 인증샷 촬영 후 올리기" data-ja="チームメンバーを含めて認証ショットを撮影してアップロード">팀원 포함으로 인증샷 촬영 후 올리기</span>
-            &nbsp;<a href="#" class="upload-link" data-ko="&#10132; 업로드 바로가기" data-ja="&#10132; アップロードへ">&#10132; 업로드 바로가기</a>
-          </span>
-        </li>
+      <ul class="mission-steps">
+        <li class="mission-step"><span class="step-num">1</span><span class="step-text" data-ko="여기가 어디인지 추리해보기" data-ja="ここがどこか推理してみよう">여기가 어디인지 추리해보기</span></li>
+      </ul>
+      <div class="mission-img-placeholder" data-ko="[ 히든 스팟 사진 ]" data-ja="[ ヒドゥンスポット写真 ]">[ 히든 스팟 사진 ]</div>
+      <ul class="mission-steps" style="margin-top: 4px;">
+        <li class="mission-step"><span class="step-num">2</span><span class="step-text" data-ko="해당 장소로 이동하기" data-ja="その場所へ移動する">해당 장소로 이동하기</span></li>
+        <li class="mission-step"><span class="step-num">3</span><span class="step-text" data-ko="장소 앞에서 사진 찍기" data-ja="場所の前で写真を撮る">장소 앞에서 사진 찍기</span></li>
+        <li class="mission-step"><span class="step-num">4</span><span class="step-text"><a href="#" class="upload-link" data-ko="&#10132; 인증샷 업로드 바로가기" data-ja="&#10132; 認証ショットアップロードへ">&#10132; 인증샷 업로드 바로가기</a></span></li>
       </ul>
       <button class="mission-complete-btn" onclick="toggleComplete(5)" data-ko="미션 완료!" data-ja="ミッション完了！" data-ko-done="완료됨 &#10003;" data-ja-done="完了 &#10003;">미션 완료!</button>
     </div></div>
@@ -417,20 +369,14 @@
 
 </div>
 
-<!-- Wrap-up -->
+<!-- After Tour -->
 <div class="section">
-  <div class="section-title">&#127916; <span data-ko="마무리" data-ja="まとめ">마무리</span></div>
+  <div class="section-title">&#127916; <span data-ko="종료 후" data-ja="終了後">종료 후</span></div>
   <div class="wrapup-card">
-    <h3>&#128248; <span data-ko="포토월 감상" data-ja="フォトウォール鑑賞">포토월 감상</span> <span class="floor-tag">5min</span></h3>
-    <p data-ko="10층 WE! PLACE로 복귀하며 프로젝터의 라이브 포토월을 감상하세요." data-ja="10F WE! PLACEに戻りながら、プロジェクターのライブフォトウォールを鑑賞しましょう。">10층 WE! PLACE로 복귀하며 프로젝터의 라이브 포토월을 감상하세요.</p>
-  </div>
-  <div class="wrapup-card">
-    <h3>&#127897;&#65039; <span data-ko="메시지 타임" data-ja="メッセージタイム">메시지 타임</span> <span class="floor-tag">10min</span></h3>
-    <ul>
-      <li><span data-ko="투어 중 올라온 응원 메시지를 함께 읽기" data-ja="ツアー中に寄せられた応援メッセージを一緒に読む">투어 중 올라온 응원 메시지를 함께 읽기</span></li>
-      <li><span data-ko="\"오늘 사옥투어를 한 단어로?\" — 워드클라우드 완성!" data-ja="「今日のオフィスツアーを一言で？」— ワードクラウド完成！">"오늘 사옥투어를 한 단어로?" — 워드클라우드 완성!</span></li>
-      <li><span data-ko="한국어+일본어가 섞인 워드클라우드 = 오늘의 기념품" data-ja="韓国語+日本語が混ざったワードクラウド = 今日の記念品">한국어+일본어가 섞인 워드클라우드 = 오늘의 기념품</span></li>
-    </ul>
+    <h3>&#128248; <span data-ko="포토월 & 메시지" data-ja="フォトウォール & メッセージ">포토월 & 메시지</span></h3>
+    <p data-ko="10층 WE! PLACE에서 라이브 포토월을 감상하세요." data-ja="10F WE! PLACEでライブフォトウォールを鑑賞しましょう。">10층 WE! PLACE에서 라이브 포토월을 감상하세요.</p>
+    <p data-ko="열심히 인증해준 동료들에게 응원 메시지를 남겨주세요" data-ja="頑張って認証してくれた仲間に応援メッセージを残しましょう">열심히 인증해준 동료들에게 응원 메시지를 남겨주세요</p>
+    <p><a href="#" class="msg-link" data-ko="&#10132; 남기러 가기" data-ja="&#10132; メッセージを残しに行く">&#10132; 남기러 가기</a></p>
   </div>
 </div>
 
@@ -441,7 +387,6 @@
 <canvas class="confetti-overlay" id="confetti"></canvas>
 
 <script>
-// === Language ===
 var currentLang = 'ko';
 function setLang(lang) {
   currentLang = lang;
@@ -454,119 +399,83 @@ function setLang(lang) {
   updateProgress(); updateCompleteBtns();
 }
 
-// === Countdown to 2026-04-14 17:15 KST ===
+// Countdown to 2026-04-14 17:15 KST
 var TARGET = new Date('2026-04-14T17:15:00+09:00').getTime();
-
 function updateCountdown() {
-  var now = Date.now();
-  var diff = TARGET - now;
+  var diff = TARGET - Date.now();
   var el = document.getElementById('countdown');
   if (diff <= 0) {
-    el.innerHTML = '<span class="countdown-done">' + (currentLang === 'ko' ? '미션 종료!' : 'ミッション終了！') + '</span>';
+    el.innerHTML = '<span class="countdown-done">' + (currentLang==='ko'?'미션 종료!':'ミッション終了！') + '</span>';
     return;
   }
-  var d = Math.floor(diff / 86400000);
-  var h = Math.floor((diff % 86400000) / 3600000);
-  var m = Math.floor((diff % 3600000) / 60000);
-  var s = Math.floor((diff % 60000) / 1000);
-  if (d > 0) {
-    el.textContent = d + (currentLang === 'ko' ? '일 ' : '日 ')
-      + String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
-  } else {
-    el.textContent = String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
-  }
+  var d = Math.floor(diff/86400000), h = Math.floor((diff%86400000)/3600000),
+      m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000);
+  el.textContent = d > 0
+    ? d + (currentLang==='ko'?'일 ':'日 ') + String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')
+    : String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
 }
-updateCountdown();
-setInterval(updateCountdown, 1000);
+updateCountdown(); setInterval(updateCountdown, 1000);
 
-// === Mission Toggle ===
 function toggleMission(num) {
-  var card = document.querySelector('.mission-card[data-mission="' + num + '"]');
+  var card = document.querySelector('.mission-card[data-mission="'+num+'"]');
   var wasOpen = card.classList.contains('open');
   document.querySelectorAll('.mission-card').forEach(function(c){c.classList.remove('open')});
   if (!wasOpen) card.classList.add('open');
 }
 
-// === Checklist ===
-function toggleCheck(el) {
-  el.classList.toggle('checked');
-  el.textContent = el.classList.contains('checked') ? '\u2713' : '';
-}
-
-// === Mission Complete (toggleable) ===
 var completedMissions = new Set();
-
 function toggleComplete(num) {
-  var card = document.querySelector('.mission-card[data-mission="' + num + '"]');
+  var card = document.querySelector('.mission-card[data-mission="'+num+'"]');
   var btn = card.querySelector('.mission-complete-btn');
   if (completedMissions.has(num)) {
     completedMissions.delete(num);
     card.classList.remove('completed');
     btn.classList.remove('done');
-    btn.textContent = btn.getAttribute('data-' + currentLang);
-    card.querySelectorAll('.check-icon').forEach(function(ci){
-      ci.classList.remove('checked'); ci.textContent = '';
-    });
+    btn.textContent = btn.getAttribute('data-'+currentLang);
   } else {
     completedMissions.add(num);
     card.classList.add('completed');
     btn.classList.add('done');
-    btn.textContent = btn.getAttribute('data-' + currentLang + '-done');
-    card.querySelectorAll('.check-icon').forEach(function(ci){
-      ci.classList.add('checked'); ci.textContent = '\u2713';
-    });
+    btn.textContent = btn.getAttribute('data-'+currentLang+'-done');
     if (completedMissions.size === 5) launchConfetti();
   }
   updateProgress();
 }
 
 function updateCompleteBtns() {
-  completedMissions.forEach(function(num) {
-    var btn = document.querySelector('.mission-card[data-mission="' + num + '"] .mission-complete-btn');
-    if (btn) { btn.textContent = btn.getAttribute('data-' + currentLang + '-done'); }
-  });
   document.querySelectorAll('.mission-card').forEach(function(card) {
     var num = parseInt(card.getAttribute('data-mission'));
-    if (!completedMissions.has(num)) {
-      var btn = card.querySelector('.mission-complete-btn');
-      if (btn) btn.textContent = btn.getAttribute('data-' + currentLang);
-    }
+    var btn = card.querySelector('.mission-complete-btn');
+    if (!btn) return;
+    btn.textContent = completedMissions.has(num)
+      ? btn.getAttribute('data-'+currentLang+'-done')
+      : btn.getAttribute('data-'+currentLang);
   });
 }
 
-// === Progress ===
 function updateProgress() {
   var c = completedMissions.size;
-  document.getElementById('progressBar').style.width = (c / 5 * 100) + '%';
+  document.getElementById('progressBar').style.width = (c/5*100)+'%';
   document.getElementById('progressText').textContent =
-    currentLang === 'ko' ? '\uBBF8\uC158 \uC644\uB8CC: ' + c + ' / 5' : '\u30DF\u30C3\u30B7\u30E7\u30F3\u5B8C\u4E86: ' + c + ' / 5';
+    currentLang==='ko' ? '\uBBF8\uC158 \uC644\uB8CC: '+c+' / 5' : '\u30DF\u30C3\u30B7\u30E7\u30F3\u5B8C\u4E86: '+c+' / 5';
 }
 
-// === Confetti ===
 function launchConfetti() {
-  var canvas = document.getElementById('confetti');
-  var ctx = canvas.getContext('2d');
+  var canvas = document.getElementById('confetti'), ctx = canvas.getContext('2d');
   canvas.width = window.innerWidth; canvas.height = window.innerHeight;
   var pieces = [], colors = ['#e63b2e','#e88bc7','#2db84b','#c4a84d','#3366cc'];
-  for (var i = 0; i < 120; i++) {
-    pieces.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height-canvas.height,
-      w: Math.random()*10+5, h: Math.random()*6+3, color: colors[Math.floor(Math.random()*colors.length)],
-      vy: Math.random()*3+2, vx: (Math.random()-0.5)*2, rot: Math.random()*360, vr: (Math.random()-0.5)*10, opacity: 1 });
-  }
-  var frame = 0;
-  function draw() {
-    ctx.clearRect(0,0,canvas.width,canvas.height); var alive = false;
-    pieces.forEach(function(p){ if(p.opacity<=0)return; alive=true;
-      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr; if(frame>60) p.opacity-=0.01;
-      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180);
-      ctx.globalAlpha=Math.max(0,p.opacity); ctx.fillStyle=p.color;
-      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore(); });
-    frame++; if(alive) requestAnimationFrame(draw); else ctx.clearRect(0,0,canvas.width,canvas.height);
-  }
+  for (var i=0;i<120;i++) pieces.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,
+    w:Math.random()*10+5,h:Math.random()*6+3,color:colors[Math.floor(Math.random()*colors.length)],
+    vy:Math.random()*3+2,vx:(Math.random()-0.5)*2,rot:Math.random()*360,vr:(Math.random()-0.5)*10,opacity:1});
+  var frame=0;
+  function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);var alive=false;
+    pieces.forEach(function(p){if(p.opacity<=0)return;alive=true;p.y+=p.vy;p.x+=p.vx;p.rot+=p.vr;
+      if(frame>60)p.opacity-=0.01;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot*Math.PI/180);
+      ctx.globalAlpha=Math.max(0,p.opacity);ctx.fillStyle=p.color;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();});
+    frame++;if(alive)requestAnimationFrame(draw);else ctx.clearRect(0,0,canvas.width,canvas.height);}
   draw();
 }
 
-// Init
 document.querySelector('.mission-card[data-mission="1"]').classList.add('open');
 </script>
 </body>
