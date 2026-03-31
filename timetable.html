@@ -32,6 +32,17 @@
   .header {
     padding: 28px 20px 24px; position: relative; overflow: hidden;
   }
+  .header::before {
+    content: '';
+    position: absolute; top: 18px; right: 28px;
+    width: 10px; height: 10px; background: var(--red); border-radius: 50%;
+    box-shadow:
+      -160px 12px 0 7px var(--green),
+      -50px 70px 0 4px var(--gold),
+      35px 55px 0 3px var(--pink),
+      -100px 100px 0 5px var(--blue),
+      15px 110px 0 3px var(--red);
+  }
   .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; position: relative; z-index: 2; }
   .header-date { font-size: 12px; font-weight: 700; color: var(--text-sub); letter-spacing: 1px; }
   .lang-toggle { display: flex; background: rgba(0,0,0,0.06); border-radius: 20px; overflow: hidden; }
@@ -45,12 +56,20 @@
   .header h1 { font-size: 28px; font-weight: 900; letter-spacing: -1.5px; }
   .header p { font-size: 13px; color: var(--text-sub); margin-top: 4px; }
 
-  /* Header decoration - subtle confetti dots */
+  /* Header hand decoration */
   .header-deco {
     position: absolute; top: 0; right: 0; width: 160px; height: 160px; z-index: 1;
   }
 
-  .header-line { height: 1px; background: var(--border); }
+  .confetti-strip {
+    height: 4px;
+    background: repeating-linear-gradient(90deg,
+      var(--red) 0px, var(--red) 20px, transparent 20px, transparent 24px,
+      var(--pink) 24px, var(--pink) 44px, transparent 44px, transparent 48px,
+      var(--green) 48px, var(--green) 68px, transparent 68px, transparent 72px,
+      var(--gold) 72px, var(--gold) 92px, transparent 92px, transparent 96px,
+      var(--blue) 96px, var(--blue) 116px, transparent 116px, transparent 120px);
+  }
 
   /* Day tabs */
   .day-tabs {
@@ -63,7 +82,7 @@
     font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit;
     color: var(--text-sub); transition: all 0.2s; border-radius: 10px;
   }
-  .day-tab.active { color: white; border-color: transparent; background: #6b6560; }
+  .day-tab.active { color: var(--text); border-color: var(--text); background: var(--card); }
   .day-tab .day-date { font-size: 11px; display: block; margin-top: 2px; opacity: 0.8; }
 
   /* Day content */
@@ -99,14 +118,14 @@
 
   /* NOW highlight */
   .time-block.highlight {
-    border-color: #6b6560 !important; border-width: 1.5px; border-left-width: 4px;
-    background: rgba(107,101,96,0.05);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-color: var(--pink) !important; border-width: 1.5px; border-left-width: 4px;
+    background: rgba(232,139,199,0.06);
+    box-shadow: 0 2px 14px rgba(232,139,199,0.1);
     position: relative;
   }
   .time-block.highlight::before {
     content: '';
-    position: absolute; top: 15px; right: 52px;
+    position: absolute; top: 16px; right: 56px;
     width: 6px; height: 6px; border-radius: 50%;
     background: var(--red);
     animation: livePulse 1.5s ease-in-out infinite;
@@ -114,13 +133,13 @@
   .time-block.highlight::after {
     content: 'NOW';
     position: absolute; top: 12px; right: 12px;
-    font-size: 10px; font-weight: 900; color: white;
-    background: #6b6560; padding: 2px 10px; border-radius: 8px;
+    font-size: 10px; font-weight: 900; color: var(--red);
+    background: rgba(230,59,46,0.08); padding: 2px 10px; border-radius: 8px;
     letter-spacing: 0.5px;
   }
   @keyframes livePulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.2); }
   }
 
   /* Footer */
@@ -155,7 +174,7 @@
     </g>
   </svg>
 </div>
-<div class="header-line"></div>
+<div class="confetti-strip"></div>
 
 <!-- Day Tabs -->
 <div class="day-tabs">
