@@ -402,7 +402,9 @@ var DAY_DATES = ['2026-04-14','2026-04-15','2026-04-16','2026-04-17'];
 
 function highlightCurrent() {
   // KST offset
-  var now = new Date(Date.now() + (new Date().getTimezoneOffset() + 540) * 60000);
+  var now = DEBUG_TIME
+    ? new Date(new Date(DEBUG_TIME).getTime() + (new Date().getTimezoneOffset() + 540) * 60000)
+    : new Date(Date.now() + (new Date().getTimezoneOffset() + 540) * 60000);
   var todayStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
   var nowMin = now.getHours() * 60 + now.getMinutes();
 
@@ -440,6 +442,10 @@ function highlightCurrent() {
     }
   });
 }
+
+// === DEBUG: 미리보기용 가짜 시간 (제거 시 null로 변경) ===
+var DEBUG_TIME = '2026-04-14T18:10:00+09:00'; // null로 바꾸면 실제 시간 사용
+// =========================================================
 
 highlightCurrent();
 setInterval(highlightCurrent, 60000);
