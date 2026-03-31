@@ -21,8 +21,6 @@
     --success: #2db84b;
     --tag-bg: rgba(45,184,75,0.12);
     --tag-text: #1e9e3a;
-    --muted: #a09890;
-    --muted-bg: #b5aa9e;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,6 +31,12 @@
   }
 
   .header { background: var(--bg); position: relative; overflow: hidden; }
+  .header::before {
+    content: ''; position: absolute; top: 20px; right: 30px; width: 12px; height: 12px;
+    background: var(--red); border-radius: 50%;
+    box-shadow: -180px 15px 0 8px var(--green), -60px 80px 0 5px var(--gold),
+      40px 60px 0 4px var(--pink), -120px 130px 0 6px var(--blue), 20px 140px 0 3px var(--red);
+  }
   .header-inner { padding: 28px 20px 20px; position: relative; z-index: 2; }
   .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
   .header-date { font-size: 12px; font-weight: 700; color: var(--text-sub); letter-spacing: 1px; }
@@ -49,7 +53,7 @@
   .hero-title .kr { display: block; }
   .hero-title .jp { display: block; font-size: 20px; color: var(--text-sub); margin-top: 2px; }
   .hero-sub { font-size: 13px; color: var(--text-sub); text-align: left; margin-top: 8px; font-weight: 500; }
-  .hero-hands { position: absolute; right: 10px; top: 0px; width: 140px; height: 140px; opacity: 0.15; filter: grayscale(1); }
+  .hero-hands { position: absolute; right: 10px; top: 0px; width: 140px; height: 140px; opacity: 0.9; }
 
 
   .countdown-bar {
@@ -59,7 +63,7 @@
   .countdown-label { font-size: 12px; color: var(--text-sub); font-weight: 500; margin-bottom: 4px; }
   .countdown-value { font-size: 22px; font-weight: 900; font-variant-numeric: tabular-nums; letter-spacing: -0.5px; }
   .countdown-target { font-size: 11px; color: var(--text-sub); margin-top: 4px; }
-  .countdown-done { color: var(--text); font-weight: 700; }
+  .countdown-done { color: var(--red); font-weight: 700; }
 
   .section { padding: 0 16px; margin-bottom: 20px; }
   .section-title { font-size: 16px; font-weight: 900; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
@@ -67,41 +71,41 @@
   .schedule-card { background: var(--card); border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
   .schedule-item { display: flex; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--border); gap: 12px; }
   .schedule-item:last-child { border-bottom: none; }
-  .schedule-time { font-size: 13px; font-weight: 900; color: var(--text); min-width: 90px; white-space: nowrap; }
+  .schedule-time { font-size: 13px; font-weight: 900; color: var(--red); min-width: 90px; white-space: nowrap; }
   .schedule-emoji { font-size: 20px; }
   .schedule-desc { font-size: 14px; font-weight: 700; flex: 1; }
   .schedule-loc { font-size: 11px; color: var(--text-sub); margin-top: 2px; }
   .floor-tag {
-    display: inline-block; background: rgba(0,0,0,0.05); color: var(--text-sub);
+    display: inline-block; background: var(--tag-bg); color: var(--tag-text);
     font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 8px; margin-left: 4px;
   }
 
   .progress-section { padding: 0 16px; margin-bottom: 24px; }
   .progress-bar-bg { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; margin-bottom: 8px; }
-  .progress-bar-fill { height: 100%; background: var(--muted-bg); border-radius: 4px; transition: width 0.5s ease; width: 0%; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--gold)); border-radius: 4px; transition: width 0.5s ease; width: 0%; }
   .progress-text { font-size: 12px; color: var(--text-sub); text-align: center; font-weight: 700; }
 
   .mission-card {
     background: var(--card); border-radius: 16px; margin-bottom: 14px;
     overflow: hidden; border: 1px solid var(--border); transition: all 0.3s;
   }
-  .mission-card.completed { border-color: var(--border); }
-  .mission-card.completed[data-mission="1"] { border-color: var(--red); background: #fdf6f5; }
-  .mission-card.completed[data-mission="2"] { border-color: var(--pink); background: #fdf5fa; }
-  .mission-card.completed[data-mission="3"] { border-color: var(--gold); background: #fdfaf2; }
-  .mission-card.completed[data-mission="4"] { border-color: var(--blue); background: #f5f8fd; }
-  .mission-card.completed[data-mission="5"] { border-color: var(--green); background: #f5fdf6; }
+  .mission-card.completed { border-color: var(--success); background: #f8fdf8; }
   .mission-header { padding: 16px; cursor: pointer; display: flex; align-items: center; gap: 12px; }
   .mission-number {
     width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center;
     justify-content: center; font-size: 16px; font-weight: 900; flex-shrink: 0; color: white;
   }
-  .mission-number { background: var(--muted-bg); }
-  .mission-card.completed[data-mission="1"] .mission-number { background: var(--red) !important; }
-  .mission-card.completed[data-mission="2"] .mission-number { background: var(--pink) !important; }
-  .mission-card.completed[data-mission="3"] .mission-number { background: var(--gold) !important; }
-  .mission-card.completed[data-mission="4"] .mission-number { background: var(--blue) !important; }
-  .mission-card.completed[data-mission="5"] .mission-number { background: var(--green) !important; }
+  .mission-number { background: #ccc; transition: background 0.3s; }
+  .mission-card.open[data-mission="1"] .mission-number,
+  .mission-card.completed[data-mission="1"] .mission-number { background: var(--red); }
+  .mission-card.open[data-mission="2"] .mission-number,
+  .mission-card.completed[data-mission="2"] .mission-number { background: var(--pink); }
+  .mission-card.open[data-mission="3"] .mission-number,
+  .mission-card.completed[data-mission="3"] .mission-number { background: var(--gold); }
+  .mission-card.open[data-mission="4"] .mission-number,
+  .mission-card.completed[data-mission="4"] .mission-number { background: var(--blue); }
+  .mission-card.open[data-mission="5"] .mission-number,
+  .mission-card.completed[data-mission="5"] .mission-number { background: var(--green); }
   .mission-card.completed .mission-num-text { display: none; }
   .mission-card.completed .mission-check-text { display: inline; }
   .mission-check-text { display: none; }
@@ -124,6 +128,11 @@
     width: 6px; height: 6px; border-radius: 50%; background: var(--text-sub);
     flex-shrink: 0; margin-top: 8px;
   }
+  .mission-card[data-mission="1"] .step-bullet { background: var(--red); }
+  .mission-card[data-mission="2"] .step-bullet { background: var(--pink); }
+  .mission-card[data-mission="3"] .step-bullet { background: var(--gold); }
+  .mission-card[data-mission="4"] .step-bullet { background: var(--blue); }
+  .mission-card[data-mission="5"] .step-bullet { background: var(--green); }
 
   .step-text { flex: 1; }
 
@@ -131,7 +140,7 @@
 
   .upload-link {
     display: inline-flex; align-items: center; gap: 4px;
-    color: var(--text-sub); font-weight: 700; text-decoration: none; font-size: 13px;
+    color: var(--blue); font-weight: 700; text-decoration: none; font-size: 13px;
   }
   .upload-link:hover { text-decoration: underline; }
 
@@ -145,13 +154,13 @@
     color: white; font-size: 14px; font-weight: 700; cursor: pointer;
     transition: all 0.2s; font-family: inherit;
   }
-  .mission-complete-btn { background: var(--muted-bg); }
+  .mission-card[data-mission="1"] .mission-complete-btn { background: var(--red); }
+  .mission-card[data-mission="2"] .mission-complete-btn { background: var(--pink); }
+  .mission-card[data-mission="3"] .mission-complete-btn { background: var(--gold); }
+  .mission-card[data-mission="4"] .mission-complete-btn { background: var(--blue); }
+  .mission-card[data-mission="5"] .mission-complete-btn { background: var(--green); }
   .mission-complete-btn:hover { opacity: 0.9; }
-  .mission-card[data-mission="1"] .mission-complete-btn.done { background: var(--red) !important; }
-  .mission-card[data-mission="2"] .mission-complete-btn.done { background: var(--pink) !important; }
-  .mission-card[data-mission="3"] .mission-complete-btn.done { background: var(--gold) !important; }
-  .mission-card[data-mission="4"] .mission-complete-btn.done { background: var(--blue) !important; }
-  .mission-card[data-mission="5"] .mission-complete-btn.done { background: var(--green) !important; }
+  .mission-complete-btn.done { background: var(--success) !important; }
 
   .wrapup-card {
     background: var(--card); border-radius: 16px; padding: 20px; margin-bottom: 14px; border: 1px solid var(--border);
@@ -161,7 +170,7 @@
   .wrapup-card p:last-child { margin-bottom: 0; }
   .msg-link {
     display: inline-flex; align-items: center; gap: 4px;
-    color: var(--text-sub); font-weight: 700; text-decoration: none; font-size: 13px;
+    color: var(--red); font-weight: 700; text-decoration: none; font-size: 13px;
   }
   .msg-link:hover { text-decoration: underline; }
 
@@ -248,9 +257,9 @@
 
 <!-- Tip -->
 <div class="section">
-  <div style="background:var(--card);border-radius:12px;padding:12px 16px;font-size:13px;border:1px solid var(--border);line-height:1.7;">
-    <strong style="color:var(--text-sub);">Tip.</strong> <span data-ko="인증샷 사진은 서로 번갈아가며 찍어주기" data-ja="認証ショットの写真はお互い交代しながら撮りましょう">인증샷 사진은 서로 번갈아가며 찍어주기</span><br>
-    <strong style="color:var(--text-sub);">Tip.</strong> <span data-ko="한국 신입사원들이 일본 신입사원들에게 곳곳을 소개해주면 더 좋아요!" data-ja="韓国の新入社員が日本の新入社員にあちこち紹介してあげるともっと良いですよ！">한국 신입사원들이 일본 신입사원들에게 곳곳을 소개해주면 더 좋아요!</span>
+  <div style="background:#fff8e6;border-radius:12px;padding:12px 16px;font-size:13px;border:1px solid var(--gold);line-height:1.7;">
+    <strong style="color:#a08830;">Tip.</strong> <span data-ko="인증샷 사진은 서로 번갈아가며 찍어주기" data-ja="認証ショットの写真はお互い交代しながら撮りましょう">인증샷 사진은 서로 번갈아가며 찍어주기</span><br>
+    <strong style="color:#a08830;">Tip.</strong> <span data-ko="한국 신입사원들이 일본 신입사원들에게 곳곳을 소개해주면 더 좋아요!" data-ja="韓国の新入社員が日本の新入社員にあちこち紹介してあげるともっと良いですよ！">한국 신입사원들이 일본 신입사원들에게 곳곳을 소개해주면 더 좋아요!</span>
   </div>
 </div>
 
@@ -451,9 +460,7 @@ function updateCompleteBtns() {
 
 function updateProgress() {
   var c = completedMissions.size;
-  var bar = document.getElementById('progressBar');
-  bar.style.width = (c/5*100)+'%';
-  bar.style.background = c === 5 ? 'linear-gradient(90deg, var(--red), var(--pink), var(--gold), var(--blue), var(--green))' : 'var(--muted-bg)';
+  document.getElementById('progressBar').style.width = (c/5*100)+'%';
   document.getElementById('progressText').textContent =
     currentLang==='ko' ? '\uBBF8\uC158 \uC644\uB8CC: '+c+' / 5' : '\u30DF\u30C3\u30B7\u30E7\u30F3\u5B8C\u4E86: '+c+' / 5';
 }
