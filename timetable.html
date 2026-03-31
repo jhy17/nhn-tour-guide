@@ -50,15 +50,7 @@
     position: absolute; top: 0; right: 0; width: 160px; height: 160px; z-index: 1;
   }
 
-  .confetti-strip {
-    height: 4px;
-    background: repeating-linear-gradient(90deg,
-      var(--red) 0px, var(--red) 20px, transparent 20px, transparent 24px,
-      var(--pink) 24px, var(--pink) 44px, transparent 44px, transparent 48px,
-      var(--green) 48px, var(--green) 68px, transparent 68px, transparent 72px,
-      var(--gold) 72px, var(--gold) 92px, transparent 92px, transparent 96px,
-      var(--blue) 96px, var(--blue) 116px, transparent 116px, transparent 120px);
-  }
+  .header-line { height: 1px; background: var(--border); }
 
   /* Day tabs */
   .day-tabs {
@@ -71,11 +63,7 @@
     font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit;
     color: var(--text-sub); transition: all 0.2s; border-radius: 10px;
   }
-  .day-tab.active { color: white; border-color: transparent; }
-  .day-tab[data-day="1"].active { background: var(--red); }
-  .day-tab[data-day="2"].active { background: var(--blue); }
-  .day-tab[data-day="3"].active { background: var(--gold); }
-  .day-tab[data-day="4"].active { background: var(--green); }
+  .day-tab.active { color: white; border-color: transparent; background: var(--text); }
   .day-tab .day-date { font-size: 11px; display: block; margin-top: 2px; opacity: 0.8; }
 
   /* Day content */
@@ -106,38 +94,34 @@
   .tag-tour { background: rgba(230,59,46,0.08); color: var(--red); }
   .tag-default { background: rgba(0,0,0,0.04); color: var(--text-sub); }
 
-  /* Color left accent bar per day */
-  #day1 .time-block { border-left: 3px solid var(--red); }
-  #day2 .time-block { border-left: 3px solid var(--blue); }
-  #day3 .time-block { border-left: 3px solid var(--gold); }
-  #day4 .time-block { border-left: 3px solid var(--green); }
+  /* Left accent */
+  .time-block { border-left: 3px solid var(--border); }
 
   /* LIVE highlight */
   .time-block.highlight {
-    border-color: var(--green) !important; border-width: 2px; border-left-width: 4px;
-    background: #f6fdf7;
-    box-shadow: 0 2px 12px rgba(45,184,75,0.12);
+    border-color: var(--text) !important; border-width: 2px; border-left-width: 4px;
+    background: var(--card);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     position: relative;
   }
   .time-block.highlight::before {
-    content: 'LIVE';
+    content: 'NOW';
     position: absolute; top: 12px; right: 12px;
     font-size: 10px; font-weight: 900; color: white;
-    background: var(--green); padding: 2px 8px 2px 16px; border-radius: 8px;
+    background: var(--text); padding: 2px 8px 2px 16px; border-radius: 8px;
     letter-spacing: 0.5px;
   }
   .time-block.highlight::after {
     content: '';
-    position: absolute; top: 17px; right: 42px;
+    position: absolute; top: 17px; right: 40px;
     width: 5px; height: 5px; border-radius: 50%;
-    background: white;
+    background: var(--red);
     animation: livePulse 1.5s ease-in-out infinite;
   }
   @keyframes livePulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.3; }
   }
-  .time-block.highlight .time-range { color: var(--green); }
 
   /* Footer */
   .footer {
@@ -171,7 +155,7 @@
     </g>
   </svg>
 </div>
-<div class="confetti-strip"></div>
+<div class="header-line"></div>
 
 <!-- Day Tabs -->
 <div class="day-tabs">
