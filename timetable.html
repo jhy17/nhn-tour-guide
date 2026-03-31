@@ -161,7 +161,7 @@
       <div><div class="time-title">Lunch</div></div>
     </div>
   </div>
-  <div class="time-block highlight">
+  <div class="time-block">
     <div class="time-block-header">
       <div class="time-range">15:00-16:00</div>
       <div class="time-emoji">&#127183;</div>
@@ -171,7 +171,7 @@
       </div>
     </div>
   </div>
-  <div class="time-block highlight">
+  <div class="time-block">
     <div class="time-block-header">
       <div class="time-range">16:00-17:30</div>
       <div class="time-emoji">&#127939;</div>
@@ -253,7 +253,7 @@
       <div><div class="time-title" data-ko="판교 &#10132; 서울 이동" data-ja="板橋 &#10132; ソウル 移動">판교 &#10132; 서울 이동</div></div>
     </div>
   </div>
-  <div class="time-block highlight">
+  <div class="time-block">
     <div class="time-block-header">
       <div class="time-range">15:00-18:00</div>
       <div class="time-emoji">&#128506;</div>
@@ -342,7 +342,7 @@
 
 <!-- Day 4: 4/17 (금) -->
 <div class="day-content" id="day4">
-  <div class="time-block highlight">
+  <div class="time-block">
     <div class="time-block-header">
       <div class="time-range">09:00-13:00</div>
       <div class="time-emoji">&#128227;</div>
@@ -396,6 +396,53 @@ function showDay(num) {
   document.querySelectorAll('.day-tab').forEach(function(t,i){ t.classList.toggle('active', i===num-1); });
   document.querySelectorAll('.day-content').forEach(function(d,i){ d.classList.toggle('active', i===num-1); });
 }
+
+// Auto-highlight current time block + auto-select today's tab
+var DAY_DATES = ['2026-04-14','2026-04-15','2026-04-16','2026-04-17'];
+
+function highlightCurrent() {
+  // KST offset
+  var now = new Date(Date.now() + (new Date().getTimezoneOffset() + 540) * 60000);
+  var todayStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+  var nowMin = now.getHours() * 60 + now.getMinutes();
+
+  // Remove all highlights
+  document.querySelectorAll('.time-block').forEach(function(b){ b.classList.remove('highlight'); });
+
+  // Find today's day index
+  var dayIdx = DAY_DATES.indexOf(todayStr);
+  if (dayIdx === -1) return;
+
+  // Auto-switch to today's tab
+  showDay(dayIdx + 1);
+
+  // Highlight matching time block
+  var blocks = document.querySelectorAll('#day' + (dayIdx+1) + ' .time-block');
+  blocks.forEach(function(block) {
+    var rangeEl = block.querySelector('.time-range');
+    if (!rangeEl) return;
+    var text = rangeEl.textContent.trim();
+    var match = text.match(/(\d{1,2}):(\d{2})/);
+    if (!match) return;
+    var startMin = parseInt(match[1]) * 60 + parseInt(match[2]);
+
+    // Find end time
+    var endMin = startMin + 60; // default 1h
+    var matchEnd = text.match(/(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})/);
+    if (matchEnd) {
+      endMin = parseInt(matchEnd[3]) * 60 + parseInt(matchEnd[4]);
+    } else if (text.includes('~')) {
+      endMin = startMin + 120; // open-ended: 2h window
+    }
+
+    if (nowMin >= startMin && nowMin < endMin) {
+      block.classList.add('highlight');
+    }
+  });
+}
+
+highlightCurrent();
+setInterval(highlightCurrent, 60000);
 </script>
 </body>
 </html>
