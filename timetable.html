@@ -197,7 +197,7 @@
       <div class="time-emoji">&#129302;</div>
       <div>
         <div class="time-title" data-ko="AI 패러다임이 바꿀 NHN의 미래" data-ja="AIパラダイムが変えるNHNの未来">AI 패러다임이 바꿀 NHN의 미래</div>
-        <div class="time-sub" data-ko="정우진 대표" data-ja="ジョン・ウジン代表">정우진 대표 <span class="time-tag tag-session">SESSION</span></div>
+        <div class="time-sub" data-ko="정우진 대표" data-ja="ジョン・ウジン代表">정우진 대표 <span class="time-tag tag-session">리더메시지</span></div>
       </div>
     </div>
   </div>
@@ -225,17 +225,27 @@
       <div class="time-emoji">&#128170;</div>
       <div>
         <div class="time-title" data-ko="우리의 DNA, 성장 동력" data-ja="私たちのDNA、成長の原動力">우리의 DNA, 성장 동력</div>
-        <div class="time-sub" data-ko="김상호 본부장, 김동훈 대표, 시라쿠라 대표" data-ja="キム・サンホ本部長、キム・ドンフン代表、白倉代表">김상호 본부장, 김동훈 대표, 시라쿠라 대표 <span class="time-tag tag-session">SESSION</span></div>
+        <div class="time-sub" data-ko="김동훈 대표, 시라쿠라 대표" data-ja="キム・ドンフン代表、白倉代表">김동훈 대표, 시라쿠라 대표 <span class="time-tag tag-session">리더메시지</span></div>
       </div>
     </div>
   </div>
   <div class="time-block">
     <div class="time-block-header">
-      <div class="time-range">10:00-11:00</div>
+      <div class="time-range">10:00-10:30</div>
+      <div class="time-emoji">&#128170;</div>
+      <div>
+        <div class="time-title" data-ko="우리의 DNA, 성장 동력" data-ja="私たちのDNA、成長の原動力">우리의 DNA, 성장 동력</div>
+        <div class="time-sub" data-ko="김상호 본부장" data-ja="キム・サンホ本部長">김상호 본부장 <span class="time-tag tag-session">리더메시지</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="time-block">
+    <div class="time-block-header">
+      <div class="time-range">10:00-10:30</div>
       <div class="time-emoji">&#129302;</div>
       <div>
         <div class="time-title" data-ko="NHN 그룹사 AI 도입 사례 &middot; 방향성" data-ja="NHNグループAI導入事例・方向性">NHN 그룹사 AI 도입 사례 &middot; 방향성</div>
-        <div class="time-sub" data-ko="류희태 이사" data-ja="リュ・ヒテ理事">류희태 이사 <span class="time-tag tag-session">SESSION</span></div>
+        <div class="time-sub" data-ko="류희태 이사" data-ja="リュ・ヒテ理事">류희태 이사 <span class="time-tag tag-session">리더메시지</span></div>
       </div>
     </div>
   </div>
@@ -300,7 +310,7 @@
       <div class="time-emoji">&#129309;</div>
       <div>
         <div class="time-title" data-ko="협업 및 커뮤니케이션 노하우" data-ja="コラボレーション＆コミュニケーションのノウハウ">협업 및 커뮤니케이션 노하우</div>
-        <div class="time-sub" data-ko="홍봉표 팀장, 무라카미 PD, 타나카 PD" data-ja="ホン・ボンピョ チーム長、村上PD、田中PD">홍봉표 팀장, 무라카미 PD, 타나카 PD <span class="time-tag tag-session">SESSION</span></div>
+        <div class="time-sub" data-ko="홍봉표 팀장, 무라카미 PD, 타나카 PD" data-ja="ホン・ボンピョ チーム長、村上PD、田中PD">홍봉표 팀장, 무라카미 PD, 타나카 PD <span class="time-tag tag-session">리더메시지</span></div>
       </div>
     </div>
   </div>
@@ -327,7 +337,7 @@
       <div class="time-emoji">&#127908;</div>
       <div>
         <div class="time-title" data-ko="서비스 매력을 어필하는 프레젠테이션 노하우" data-ja="サービスの魅力をアピールするプレゼンテーションのノウハウ">서비스 매력을 어필하는 프레젠테이션 노하우</div>
-        <div class="time-sub" data-ko="장경일 이사, 히라이 이사" data-ja="チャン・ギョンイル理事、平井理事">장경일 이사, 히라이 이사 <span class="time-tag tag-session">SESSION</span></div>
+        <div class="time-sub" data-ko="장경일 이사, 히라이 이사" data-ja="チャン・ギョンイル理事、平井理事">장경일 이사, 히라이 이사 <span class="time-tag tag-session">리더메시지</span></div>
       </div>
     </div>
   </div>
@@ -358,7 +368,7 @@
       <div class="time-emoji">&#128227;</div>
       <div>
         <div class="time-title" data-ko="공유세션 (4H)" data-ja="共有セッション (4H)">공유세션 (4H)</div>
-        <div class="time-sub"><span class="time-tag tag-session">SESSION</span></div>
+        <div class="time-sub"><span class="time-tag tag-session">리더메시지</span></div>
       </div>
     </div>
   </div>
@@ -421,9 +431,17 @@ function highlightCurrent() {
   // Remove all highlights
   document.querySelectorAll('.time-block').forEach(function(b){ b.classList.remove('highlight'); });
 
-  // Find today's day index
+  // Find today's or next upcoming day index
   var dayIdx = DAY_DATES.indexOf(todayStr);
-  if (dayIdx === -1) return;
+  if (dayIdx === -1) {
+    // Before or after event: find nearest upcoming day, or last day if past
+    for (var i = 0; i < DAY_DATES.length; i++) {
+      if (todayStr <= DAY_DATES[i]) { dayIdx = i; break; }
+    }
+    if (dayIdx === -1) dayIdx = DAY_DATES.length - 1;
+    showDay(dayIdx + 1);
+    return; // no highlight needed if not an event day
+  }
 
   // Auto-switch to today's tab
   showDay(dayIdx + 1);
@@ -454,7 +472,7 @@ function highlightCurrent() {
 }
 
 // === DEBUG: 미리보기용 가짜 시간 (제거 시 null로 변경) ===
-var DEBUG_TIME = '2026-04-14T18:10:00+09:00'; // null로 바꾸면 실제 시간 사용
+var DEBUG_TIME = null; // '2026-04-14T18:10:00+09:00' 형식으로 테스트 가능
 // =========================================================
 
 highlightCurrent();
