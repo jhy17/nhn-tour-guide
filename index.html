@@ -176,6 +176,14 @@
 
   .footer { text-align: center; padding: 32px 16px 16px; font-size: 11px; color: #b5aa9e; font-weight: 500; }
   .confetti-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 9999; }
+
+  .lightbox {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.85); z-index: 10000; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img { max-width: 92%; max-height: 90%; border-radius: 12px; object-fit: contain; }
 </style>
 </head>
 <body>
@@ -363,8 +371,8 @@
         <li class="mission-step"><span class="step-bullet"></span><span class="step-text" data-ko="아래 사진 중 1곳을 골라 어디인지 추리해보기" data-ja="下の写真から1つ選んで、どこか考えてみましょう">아래 사진 중 1곳을 골라 어디인지 추리해보기</span></li>
       </ul>
       <div style="margin: 8px 0 4px 0; display: flex; gap: 8px; justify-content: center;">
-        <img src="images/hidden-spot1.jpg" alt="히든 스팟 1" style="width:50%;border-radius:10px;">
-        <img src="images/hidden-spot2.jpg" alt="히든 스팟 2" style="width:50%;border-radius:10px;">
+        <img src="images/hidden-spot1.jpg" alt="히든 스팟 1" style="width:50%;border-radius:10px;cursor:pointer;" onclick="openLightbox(this.src)">
+        <img src="images/hidden-spot2.jpg" alt="히든 스팟 2" style="width:50%;border-radius:10px;cursor:pointer;" onclick="openLightbox(this.src)">
       </div>
       <ul class="mission-steps" style="margin-top: 4px;">
         <li class="mission-step"><span class="step-bullet"></span><span class="step-text" data-ko="해당 장소로 이동하기" data-ja="その場所へ移動しましょう">해당 장소로 이동하기</span></li>
@@ -392,6 +400,7 @@
   <span data-ko="2026 한일 신입 교류회 | NHN" data-ja="2026 日韓新入交流会 | NHN">2026 한일 신입 교류회 | NHN</span>
 </div>
 
+<div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightboxImg" src="" alt=""></div>
 <canvas class="confetti-overlay" id="confetti"></canvas>
 
 <script>
@@ -485,6 +494,14 @@ function launchConfetti() {
 }
 
 document.querySelector('.mission-card[data-mission="1"]').classList.add('open');
+
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('active');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+}
 </script>
 </body>
 </html>
