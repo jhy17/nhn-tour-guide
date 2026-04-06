@@ -408,10 +408,16 @@ function showDay(num) {
 var DAY_DATES = ['2026-04-14','2026-04-15','2026-04-16','2026-04-17'];
 var DEBUG_TIME = null; // '2026-04-14T16:30:00+09:00' for testing
 
-function highlightCurrent() {
-  var now = DEBUG_TIME
+var initialTabSet = false;
+
+function getKST() {
+  return DEBUG_TIME
     ? new Date(new Date(DEBUG_TIME).getTime() + (new Date().getTimezoneOffset() + 540) * 60000)
     : new Date(Date.now() + (new Date().getTimezoneOffset() + 540) * 60000);
+}
+
+function highlightCurrent() {
+  var now = getKST();
   var todayStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
   var nowMin = now.getHours() * 60 + now.getMinutes();
 
@@ -423,11 +429,12 @@ function highlightCurrent() {
       if (todayStr <= DAY_DATES[i]) { dayIdx = i; break; }
     }
     if (dayIdx === -1) dayIdx = DAY_DATES.length - 1;
-    showDay(dayIdx + 1);
+    if (!initialTabSet) { showDay(dayIdx + 1); initialTabSet = true; }
     return;
   }
 
-  showDay(dayIdx + 1);
+  // Only auto-switch tab on first load
+  if (!initialTabSet) { showDay(dayIdx + 1); initialTabSet = true; }
 
   var blocks = document.querySelectorAll('#day' + (dayIdx+1) + ' .time-block');
   blocks.forEach(function(block) {
